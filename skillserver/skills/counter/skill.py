@@ -38,4 +38,4 @@ def beginn(data, intents):
 
 	#at least one return (no in, if or try) statement has to be not indented
 	#this statement is not executed. Necessary for python interpreter tho.
-	return str(intents)
+	return str(intents),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"

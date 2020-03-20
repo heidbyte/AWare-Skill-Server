@@ -37,4 +37,4 @@ def beginn(data, intents):
 	if(answer == False):
 		return False
 	else:
-		return generate_answer(answer)
+		return generate_answer(answer),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"

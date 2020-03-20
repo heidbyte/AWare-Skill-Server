@@ -177,7 +177,7 @@ def beginn(data, intents):
 		if(begin == None):
 			return (False)
 		if(event == None):
-			return (str(setCalDavEvents(url = url, username = username, password = password, begin = begin)))
+			return str(setCalDavEvents(url = url, username = username, password = password, begin = begin)),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
 		else:
-			return (str(setCalDavEvents(url = url, username = username, password = password, begin = begin, event = event)))
+			return str(setCalDavEvents(url = url, username = username, password = password, begin = begin, event = event)),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
 		

@@ -52,4 +52,4 @@ def beginn(data, intents):
 	if(appnames == None):
 		return False
 
-	return generate_answer(appnames)
+	return generate_answer(appnames),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
