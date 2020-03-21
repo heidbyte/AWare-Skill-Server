@@ -32,7 +32,36 @@ utterances:
   - erinnere mich in [hours](10) Stunden [seconds](10) Sekunden
   - melde dich in [seconds](10) Sekunden 
   - wecke mich in [minutes](10) Minuten und [seconds](10) Sekunden
-
+  - Timer [seconds](10) Sekunden
+  - Timer [minutes](10) Minuten
+  - Timer [hours](10) Stunden
+  - Timer [hours](10) Stunden und [minutes](10) Minuten
+  - Timer [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
+  - Timer [minutes](10) Minuten und [seconds](10) Sekunden
+  - Timer in [seconds](10) Sekunden
+  - Timer in [minutes](10) Minuten
+  - Timer in [hours](10) Stunden
+  - Timer in [hours](10) Stunden und [minutes](10) Minuten
+  - Timer in [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
+  - Timer in [minutes](10) Minuten und [seconds](10) Sekunden
+  - Timer auf [seconds](10) Sekunden
+  - Timer auf [minutes](10) Minuten
+  - Timer auf [hours](10) Stunden
+  - Timer auf [hours](10) Stunden und [minutes](10) Minuten
+  - Timer auf [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
+  - Timer auf [minutes](10) Minuten und [seconds](10) Sekunden
+  - Timer stellen [seconds](10) Sekunden
+  - Timer stellen [minutes](10) Minuten
+  - Timer stellen [hours](10) Stunden
+  - Timer stellen [hours](10) Stunden und [minutes](10) Minuten
+  - Timer stellen [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
+  - Timer stellen [minutes](10) Minuten und [seconds](10) Sekunden
+  - stelle Timer auf [seconds](10) Sekunden
+  - stelle Timer auf [minutes](10) Minuten
+  - stelle Timer auf [hours](10) Stunden
+  - stelle Timer auf [hours](10) Stunden und [minutes](10) Minuten
+  - stelle Timer auf [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
+  - stelle Timer auf [minutes](10) Minuten und [seconds](10) Sekunden
 
 ---
 type: intent
