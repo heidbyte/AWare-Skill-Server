@@ -49,7 +49,7 @@ def beginn(data, intents):
 	lang = intents["lang"]
 	intention = intents["intent"]["intentName"]
 
-	if(intention == "alarm" and getSlotbyName("hours") == None):
+	if(intention == "alarm" and getSlotbyName("hours",intents) == None):
 		return False
 
 	return generate_answer(intention),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
