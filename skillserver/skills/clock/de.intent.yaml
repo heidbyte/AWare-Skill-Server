@@ -1,0 +1,53 @@
+---
+type: intent
+name: timer
+slots:
+  - name: hours
+    entity: snips/number
+
+  - name: minutes
+    entity: snips/number
+
+  - name: seconds
+    entity: snips/number
+
+utterances:
+  - stelle einen Timer auf [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden 
+  - starte einen Timer für [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden
+  - stelle einen Countdown auf [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden 
+  - starte einen Countdown für [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden
+  - stelle einen Timer auf [minutes](10) Minuten [seconds](10) Sekunden 
+  - starte einen Timer für [minutes](10) Minuten [seconds](10) Sekunden
+  - stelle einen Countdown [minutes](10) Minuten [seconds](10) Sekunden 
+  - starte einen Countdown [minutes](10) Minuten [seconds](10) Sekunden
+  - stelle einen Timer auf [minutes](10) Minuten und [seconds](10) Sekunden 
+  - starte einen Timer für [hours](10) Stunden [seconds](10) Sekunden
+  - stelle einen Countdown auf [seconds](10) Sekunden 
+  - starte einen Countdown für [minutes](10) Minuten und [seconds](10) Sekunden
+  - erinnere mich in [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden 
+  - wecke mich in [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden
+  - melde dich in [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden 
+  - sag mir in [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden bescheid
+  - sag mir in [minutes](10) Minuten und [seconds](10) Sekunden bescheid
+  - erinnere mich in [hours](10) Stunden [seconds](10) Sekunden
+  - melde dich in [seconds](10) Sekunden 
+  - wecke mich in [minutes](10) Minuten und [seconds](10) Sekunden
+
+
+---
+type: intent
+name: alarm
+slots:
+  - name: hours
+    entity: snips/number
+
+  - name: minutes
+    entity: snips/number
+
+  - name: seconds
+    entity: snips/number
+
+utterances:
+  - stelle einen Wecker auf [hours](10) Uhr [minutes](10) und [seconds](10) Sekunden 
+  - stelle einen Wecker auf [hours](10) Uhr
+  - mache einen Wecker für [hours](10) Uhr [minutes](10)

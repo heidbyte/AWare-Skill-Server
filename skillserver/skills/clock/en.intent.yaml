@@ -1,0 +1,32 @@
+---
+type: intent
+name: timer
+slots:
+  - name: hours
+    entity: snips/number
+
+  - name: minutes
+    entity: snips/number
+
+  - name: seconds
+    entity: snips/number
+
+utterances:
+  - set an timer for [hours](10) hours [minutes](10) minutes and [seconds](10) seconds
+
+
+---
+type: intent
+name: alarm
+slots:
+  - name: hours
+    entity: snips/number
+
+  - name: minutes
+    entity: snips/number
+
+  - name: seconds
+    entity: snips/number
+
+utterances:
+  - set an alarm for [hours](10) o clock [minutes](10) and [seconds](10) seconds

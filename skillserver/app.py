@@ -124,17 +124,14 @@ class serverHelpers:
 		if(text == None):
 			text = self.text
 		wtl = WhatTheLang()
-		try:
-			if(wtl.predict_lang(text) != target):
-				self.info("translating...")
-				translator = Translator()
-				translated = translator.translate(text, dest = target)
-				self.translated = translated.text
-				if(src):
-					self.lang = translated.src
-			else:
-				self.translated = text
-		except:
+		if(wtl.predict_lang(text) != target):
+			self.info("translating...")
+			translator = Translator()
+			translated = translator.translate(text, dest = target)
+			self.translated = translated.text
+			if(src):
+				self.lang = translated.src
+		else:
 			self.translated = text
 
 
