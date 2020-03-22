@@ -330,8 +330,8 @@ def foo(data = None):
 				helper.info("Fallback succesfull")
 				return results
 		
-		if(helper.lang != "en"):
-			helper.nlu2()
+		
+		helper.nlu2()
 
 		nlu_results = json.loads(json.dumps(helper.nlu_parsing, indent=2))
 		skill = nlu_results["intent"]["intentName"]
