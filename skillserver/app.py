@@ -120,7 +120,7 @@ class serverHelpers:
 		self.lang = wtl.predict_lang(self.text)
 
 
-	def translate(self,text = None, target = "en", src = False):
+	def translate(self,text = None, target = "de", src = False):
 		if(text == None):
 			text = self.text
 		wtl = WhatTheLang()
@@ -148,7 +148,7 @@ class serverHelpers:
 
 
 	def callFallback(self):
-		self.translate()
+		self.translate(target="en")
 		try:
 			answer = fallbackHandler(self.translated,json.dumps(self.data, indent=2, ensure_ascii=False))
 			self.nlu_parsing["skill_category"] = "fallback"
@@ -234,7 +234,7 @@ class serverHelpers:
 
 	def nlu2(self):
 		print("Second nlu")
-		nlu_engine = SnipsNLUEngine.from_path("en")
+		nlu_engine = SnipsNLUEngine.from_path("de")
 		self.translate()
 		self.nlu_parsing = nlu_engine.parse(self.translated)
 		self.nlu_parsing["lang"] = self.lang
