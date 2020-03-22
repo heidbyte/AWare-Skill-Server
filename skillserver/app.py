@@ -213,7 +213,7 @@ class serverHelpers:
 			except Exception as e:
 				print(e)
 
-			nlu_engine = SnipsNLUEngine.from_path("en")
+			nlu_engine = SnipsNLUEngine.from_path("de")
 			self.nlu_parsing = nlu_engine.parse(self.translated)
 
 		self.nlu_parsing["lang"] = self.lang
