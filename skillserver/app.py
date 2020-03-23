@@ -104,7 +104,10 @@ class serverHelpers:
 		self.translated = None
 		self.nlu_parsing = None
 		self.probability = 0.6
-		self.detect()
+		if("lang" in data):
+			self.lang = data["lang"]
+		else:
+			self.detect()
 
 	
 	def info(self,text):
