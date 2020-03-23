@@ -28,12 +28,6 @@ import linecache
 import sys
 from searxapi import callAPI
 
-configData = None
-try:
-	import config
-	configData = config.keys
-except:
-	configData = None
 
 def detect(text):
 	wtl = WhatTheLang()
@@ -283,7 +277,7 @@ def foo():
 	text: contains the text need to be processed
 	lang: is the language code from original language
 	"""
-	global configData
+	configData = None
 
 	data = None
 	nlu_engine = None
