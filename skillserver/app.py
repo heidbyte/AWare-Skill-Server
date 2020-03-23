@@ -28,6 +28,12 @@ import linecache
 import sys
 from searxapi import callAPI
 
+configData = None
+try:
+	import config
+	configData = config.keys
+except:
+	configData = None
 
 def detect(text):
 	wtl = WhatTheLang()
@@ -271,14 +277,15 @@ def hello():
 
 
 @app.route('/', methods=['POST', 'GET']) 
-def foo(data = None):
+def foo():
 	"""
 	important variables:
 	text: contains the text need to be processed
 	lang: is the language code from original language
 	"""
+	global configData
 
-
+	data = None
 	nlu_engine = None
 	translated = None
 	if request.method == 'POST':
@@ -289,13 +296,10 @@ def foo(data = None):
 			print(e)
 
 	if request.method == 'GET':
-		data = {}
-		
-		try:
-			import config
-			data = config.keys
-		except:
-			pass
+		if(configData != None):
+			data = configData
+		else:
+			data = {}
 
 		data.update(request.args)
 
