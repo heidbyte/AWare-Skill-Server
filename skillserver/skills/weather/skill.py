@@ -59,7 +59,11 @@ def beginn(data, intents):
 		return False
 
 	if(location == None):
-		return False
+		try:
+			location = datas["get_location"]
+			intents["city"] = location
+		except:
+			return "Für welchen Ort möchtest du das Wetter wissen ?","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","get_location",True,intents
 
 
 	location = urllib.parse.quote(location)
