@@ -104,6 +104,9 @@ class serverHelpers:
 		self.translated = None
 		self.nlu_parsing = None
 		self.probability = 0.6
+		self.answer_type = "answer"
+		self.useTranslator = True
+
 		if("lang" in data):
 			self.lang = data["lang"]
 		else:
@@ -164,12 +167,14 @@ class serverHelpers:
 				if(len(self.nlu_parsing["speak"]) < 1):
 					return "An error occured"
 				self.nlu_parsing["answer_url"] = callAPI(self.text,self.lang)
+				self.nlu_parsing["answer_type"] = self.answer_type
 				results = json.dumps(self.nlu_parsing, indent=2, ensure_ascii=False)
 				self.info("Fallback succesfull")
 				return results
 			else:
 				self.info("Fallback found no answer")
 				lang = self.nlu_parsing["lang"]
+				self.nlu_parsing["answer_type"] = self.answer_type
 				self.nlu_parsing["answer_url"] = callAPI(self.text,self.lang)
 				
 				de = ["Tut mir leid. Das weiß ich noch nicht, aber vielleicht hilft dir diese Website"]
@@ -328,6 +333,7 @@ def foo(data = None):
 					helper.nlu_parsing["answer_url"] = answer_url
 			helper.nlu_parsing["speak"] = helper.parseAnswer(answer)
 			helper.nlu_parsing["skill_category"] = "fallback"
+			helper.nlu_parsing["answer_type"] = helper.answer_type
 			if(len(helper.nlu_parsing["speak"]) > 1):
 				results = json.dumps(helper.nlu_parsing, indent=2, ensure_ascii=False)
 				helper.info("Fallback succesfull")
@@ -360,9 +366,26 @@ def foo(data = None):
 		speak = mod.beginn(json.dumps(helper.data, indent=2, ensure_ascii=False), json.dumps(helper.nlu_parsing, indent=2).replace(category + "_", ""))
 
 		try:
-			if(len(speak) > 1 and isinstance(speak, tuple)):
+			if(len(speak) == 2 and isinstance(speak, tuple)):
 				url = speak[1]
 				speak = speak[0]
+			elif(len(speak) == 3 and isinstance(speak, tuple)):
+				helper.answer_type = speak[2]
+				url = speak[1]
+				speak = speak[0]
+			elif(len(speak) == 4 and isinstance(speak, tuple)):
+				helper.useTranslator = speak[3]
+				helper.answer_type = speak[2]
+				url = speak[1]
+				speak = speak[0]
+			elif(len(speak) == 5 and isinstance(speak, tuple)):
+				print(speak[4])
+				helper.nlu_parsing.update(speak[4])
+				helper.useTranslator = speak[3]
+				helper.answer_type = speak[2]
+				url = speak[1]
+				speak = speak[0]
+
 		except:
 			pass
 
@@ -378,6 +401,8 @@ def foo(data = None):
 						helper.nlu_parsing["answer_url"] = answer_url
 				helper.nlu_parsing["speak"] = helper.parseAnswer(answer)
 				helper.nlu_parsing["skill_category"] = "fallback"
+				helper.nlu_parsing["answer_type"] = helper.answer_type
+				
 				if(len(helper.nlu_parsing["speak"]) > 1):
 					results = json.dumps(helper.nlu_parsing, indent=2, ensure_ascii=False)
 					helper.info("Fallback succesfull")
@@ -395,11 +420,12 @@ def foo(data = None):
 
 		else:
 
-			try:
-				helper.translate(text = speak,target = helper.lang)
-			except:
-				#speak = translate(speak,lang)
-				pass
+			if(helper.useTranslator == True):
+				try:
+					helper.translate(text = speak,target = helper.lang)
+				except:
+					#speak = translate(speak,lang)
+					pass
 			
 			helper.nlu_parsing["speak"] = helper.parseAnswer(helper.translated)
 
@@ -407,6 +433,8 @@ def foo(data = None):
 				helper.nlu_parsing["answer_url"] = callAPI(helper.text,helper.lang)
 			else:
 				helper.nlu_parsing["answer_url"] = url
+
+			helper.nlu_parsing["answer_type"] = helper.answer_type
 
 			results = json.dumps(helper.nlu_parsing, indent=2, ensure_ascii=False)
 

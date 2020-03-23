@@ -48,8 +48,41 @@ def beginn(data, intents):
 	question = intents["input"]
 	lang = intents["lang"]
 	intention = intents["intent"]["intentName"]
+	hours = getSlotbyName("hours",intents)
+	minutes = getSlotbyName("minutes",intents)
+	seconds = getSlotbyName("seconds",intents)
 
-	if(intention == "alarm" and getSlotbyName("hours",intents) == None):
-		return False
+	if(hours == None):
+		try:
+			hours = datas["get_hours"]
+			intents["hours"] = int(hours)
+		except:
+			pass
+	if(minutes == None):
+		try:
+			minutes = datas["get_minutes"]
+			intents["minutes"] = int(minutes)
+		except:
+			pass
 
-	return generate_answer(intention),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
+	if(seconds == None):
+		try:
+			seconds = datas["get_seconds"]
+			intents["seconds"] = int(seconds)
+		except:
+			pass
+
+
+
+	if(intention == "alarm"):
+		if(hours == None):
+			return "Wieviel Stunden möchten sie Einstellen ?","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","get_hours"
+
+		if(minutes == None):
+			return "Wieviel Minuten möchten sie Einstellen ?","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","get_minutes"
+	else:
+		if(hours == None and hours == None and hours == None):
+			return "Bitte sag mir die Zeit, die ich einstellen soll","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
+
+
+	return generate_answer(intention),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","answer",True,intents
