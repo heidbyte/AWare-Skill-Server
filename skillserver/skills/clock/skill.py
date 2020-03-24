@@ -85,7 +85,7 @@ def beginn(data, intents):
 		if(minutes == None):
 			return "Wieviel Minuten möchten sie Einstellen ?","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","get_minutes",True,intents
 	else:
-		if(hours == None and hours == None and hours == None):
+		if(hours == None and minutes == None and seconds == None):
 			return "Bitte sag mir die Zeit, die ich einstellen soll","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
 
 
