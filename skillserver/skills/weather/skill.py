@@ -40,6 +40,7 @@ def beginn(data, intents):
 	slots = intents["slots"]
 	lang = intents["lang"]
 	apikey = data["owmapi"]
+	answer_type = "answer"
 
 
 
@@ -62,6 +63,7 @@ def beginn(data, intents):
 		try:
 			location = data["get_location"]
 			intents["city"] = location
+			answer_type = "answer_requested"
 		except:
 			return "Für welchen Ort möchtest du das Wetter wissen ?","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","get_location",True,intents
 
@@ -78,7 +80,7 @@ def beginn(data, intents):
 
 			answer = generate_answer(datas["weather"][0]["description"],datas["main"]["temp"])
 
-			return answer
+			return answer,None,answer_type
 
 
 		else:
@@ -89,7 +91,7 @@ def beginn(data, intents):
 			for x in datas["list"]:
 				if(x["dt_txt"].split(" ")[0] == time and x["dt_txt"].split(" ")[1] == "15:00:00"):
 					answer = generate_answer(x["weather"][0]["description"],str(int(x["main"]["temp_min"])))
-					return answer
+					return answer,None,answer_type
 
 		return False
 

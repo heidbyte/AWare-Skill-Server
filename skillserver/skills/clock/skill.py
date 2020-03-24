@@ -51,17 +51,20 @@ def beginn(data, intents):
 	hours = getSlotbyName("hours",intents)
 	minutes = getSlotbyName("minutes",intents)
 	seconds = getSlotbyName("seconds",intents)
+	answer_type = "answer"
 
 	if(hours == None):
 		try:
 			hours = datas["get_hours"]
 			intents["hours"] = int(hours)
+			answer_type = "answer_requested"
 		except:
 			pass
 	if(minutes == None):
 		try:
 			minutes = datas["get_minutes"]
 			intents["minutes"] = int(minutes)
+			answer_type = "answer_requested"
 		except:
 			pass
 
@@ -69,6 +72,7 @@ def beginn(data, intents):
 		try:
 			seconds = datas["get_seconds"]
 			intents["seconds"] = int(seconds)
+			answer_type = "answer_requested"
 		except:
 			pass
 
@@ -85,4 +89,4 @@ def beginn(data, intents):
 			return "Bitte sag mir die Zeit, die ich einstellen soll","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
 
 
-	return generate_answer(intention),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","answer",True,intents
+	return generate_answer(intention),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png",answer_type,True,intents
