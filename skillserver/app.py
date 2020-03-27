@@ -157,8 +157,8 @@ class serverHelpers:
 		self.translate(target="en")
 		try:
 			answer = fallbackHandler(self.translated,json.dumps(self.data, indent=2, ensure_ascii=False))
-			self.nlu_parsing["skill_category"] = "fallback"
 			if(answer != False and answer != "False"):
+				self.nlu_parsing["skill_category"] = "fallback"
 				answer = str(answer)
 				print(answer)
 				self.translate(text = answer,target = self.lang)
@@ -173,6 +173,7 @@ class serverHelpers:
 				return results
 			else:
 				self.info("Fallback found no answer")
+				self.nlu_parsing["skill_category"] = "unknown"
 				lang = self.nlu_parsing["lang"]
 				self.nlu_parsing["answer_type"] = self.answer_type
 				self.nlu_parsing["answer_url"] = callAPI(self.text,self.lang)
