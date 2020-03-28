@@ -1,0 +1,25 @@
+---
+type: intent
+name: search
+slots:
+  - name: target
+    entity: adresses
+
+utterances:
+  - where is [target](Sonnenzeit Vlotho)
+  - where is the [target](Kirche in Uffeln)
+  - where to find [target](Möllbergerstaße 1000)
+  - where is [target](Schweden)
+
+---
+type: intent
+name: navigate
+slots:
+  - name: target
+    entity: adresses
+
+utterances:
+  - navigate to [target](Sonnenzeit Vlotho)
+  - start a navigation to [target](Sonnenzeit Vlotho)
+  - show me the way to [target](Sonnenzeit Vlotho)
+  - bring me to [target](Sonnenzeit Vlotho)

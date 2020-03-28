@@ -1,0 +1,31 @@
+---
+type: intent
+name: search
+slots:
+  - name: target
+    entity: adresses
+
+utterances:
+  - Wo ist [target](Sonnenzeit Vlotho)
+  - Wo ist die [target](Kirche in Uffeln)
+  - Wo ist die [target](Möllbergerstaße 1000)
+  - Wo ist [target](Schweden)
+  - Wo liegt [target](Finnland)
+  - Wo finde ich die Praxis [target](Sonnenzeit in Vlotho)
+  - Wo ist [target](Sonnenzeit Vlotho)
+
+---
+type: intent
+name: navigate
+slots:
+  - name: target
+    entity: adresses
+
+utterances:
+  - Navigiere mich zu [target](Sonnenzeit Vlotho)
+  - Starte eine navigation zu [target](Sonnenzeit Vlotho)
+  - führe mich zu [target](Sonnenzeit Vlotho)
+  - bring mich zu [target](Sonnenzeit Vlotho)
+  - zeig mir den weg zu [target](Sonnenzeit Vlotho)
+  - navigiere zu [target](Gartenstraße 1 32602 Vlotho)
+  - navigiere zu der [target](Gartenstraße 1 in 32602 Vlotho)
