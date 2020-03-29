@@ -12,11 +12,11 @@ def generate_answer(weather,temp,location2):
 	temp = str(int(temp))
 	answer = None
 	if(lang == "de"):
-		answer = weather + " mit etwa " + temp + " Grad in" + location2
+		answer = weather + " mit etwa " + temp + " Grad in " + location2
 
 
 	if(answer == None):
-		answer = weather + " with circa " + temp + " degrees in" + location2
+		answer = weather + " with circa " + temp + " degrees in " + location2
 
 	return answer
 
