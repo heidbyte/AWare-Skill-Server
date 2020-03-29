@@ -36,3 +36,15 @@ utterances:
   - wird es [datetime](heute) in [city](London) stürmen
   - wird es [datetime](heute) in [city](London) schneien
   - gibt es [datetime](heute) in [city](London) Schnee
+  - wie ist das Wetter
+  - wie wird das Wetter [datetime](heute)
+  - wird es [datetime](heute) schneien ?
+  - regnet es [datetime](heute)
+  - scheint [datetime](heute) die Sonne
+  - wie wird das Wetter
+  - gibt es [datetime](heute) Schnee
+  - gibt es [datetime](heute) Sonnenschein
+  - gibt es [datetime](morgen) regen
+  - sag mir das Wetter
+  - sag mir den Wetterbereich
+  - sag mir wie das Wetter wird
