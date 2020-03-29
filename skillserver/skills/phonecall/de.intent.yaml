@@ -15,3 +15,7 @@ utterances:
   - .[name](Firma) anrufen
   - starte einen Anruf mit [name](Papa)
   - starte einen Anruf zu [name](Papa)
+  - ruf [name](Mama) an
+  - starte anruf mit [name](Mama)
+  - starte einen anruf mit [name](Mama)
+  - bitte starte einen anruf mit [name](Mama)

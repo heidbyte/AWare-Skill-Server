@@ -62,6 +62,12 @@ utterances:
   - stelle Timer auf [hours](10) Stunden und [minutes](10) Minuten
   - stelle Timer auf [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
   - stelle Timer auf [minutes](10) Minuten und [seconds](10) Sekunden
+  - setze einen Timer auf [seconds](10) Sekunden
+  - setze einen Timer auf [minutes](10) Minuten
+  - setze einen Timer auf [hours](10) Stunden
+  - setze einen Timer auf [hours](10) Stunden und [minutes](10) Minuten
+  - setze einen Timer auf [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
+  - setze einen Timer auf [minutes](10) Minuten und [seconds](10) Sekunden
 
 ---
 type: intent

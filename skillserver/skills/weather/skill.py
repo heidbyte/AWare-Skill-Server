@@ -6,17 +6,17 @@ import urllib.parse
 
 lang = None
 
-def generate_answer(weather,temp):
+def generate_answer(weather,temp,location2):
 	global lang
 	weather = str(weather)
 	temp = str(int(temp))
 	answer = None
 	if(lang == "de"):
-		answer = weather + " mit etwa " + temp + " Grad"
+		answer = weather + " mit etwa " + temp + " Grad in" + location2
 
 
 	if(answer == None):
-		answer = weather + " with circa " + temp + " degrees"
+		answer = weather + " with circa " + temp + " degrees in" + location2
 
 	return answer
 
@@ -68,6 +68,7 @@ def beginn(data, intents):
 			return "Für welchen Ort möchtest du das Wetter wissen ?","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","get_location",True,intents
 
 
+	location2 = location
 	location = urllib.parse.quote(location)
 
 
@@ -78,7 +79,7 @@ def beginn(data, intents):
 				datas = json.loads(url.read().decode())
 
 
-			answer = generate_answer(datas["weather"][0]["description"],datas["main"]["temp"])
+			answer = generate_answer(datas["weather"][0]["description"],datas["main"]["temp"],location2)
 
 			return answer,None,answer_type
 
@@ -90,7 +91,7 @@ def beginn(data, intents):
 
 			for x in datas["list"]:
 				if(x["dt_txt"].split(" ")[0] == time and x["dt_txt"].split(" ")[1] == "15:00:00"):
-					answer = generate_answer(x["weather"][0]["description"],str(int(x["main"]["temp_min"])))
+					answer = generate_answer(x["weather"][0]["description"],str(int(x["main"]["temp_min"])),location2)
 					return answer,None,answer_type
 
 		return False

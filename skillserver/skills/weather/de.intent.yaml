@@ -18,5 +18,21 @@ utterances:
   - wie ist das wetter [datetime](Donnerstag) in [city](Bad Oeynhausen)
   - wetter [datetime](Donnerstag) in [city](Vimmerby)
   - wetter in [city](Marianelund)
-
-
+  - scheint die Sonne in [city](Marianelund)
+  - regnet es in [city](Marianelund)
+  - gibt es Regen in [city](Marianelund)
+  - gibt es Schnee in [city](Marianelund)
+  - wird es in [city](London) [datetime](heute) Schnee geben
+  - wird es in [city](London) [datetime](heute) Regen geben
+  - wird es in [city](London) [datetime](heute) Sonne geben
+  - wird es in [city](London) [datetime](heute) Sturm geben
+  - wird es in [city](London) [datetime](heute) schneien
+  - wird es in [city](London) [datetime](heute) regnen
+  - wird es in [city](London) [datetime](heute) stürmen
+  - schneit es [datetime](heute) in [city](London)
+  - regnet es [datetime](heute) in [city](London)
+  - stürmt es [datetime](heute) in [city](London)
+  - wird es [datetime](heute) in [city](London) regnen
+  - wird es [datetime](heute) in [city](London) stürmen
+  - wird es [datetime](heute) in [city](London) schneien
+  - gibt es [datetime](heute) in [city](London) Schnee

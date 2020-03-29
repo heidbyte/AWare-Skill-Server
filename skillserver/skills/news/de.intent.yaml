@@ -6,6 +6,9 @@ utterances:
   - sag mir die Nachrichten
   - was gibt es neues
   - sag mir die neusten Nachrichten
+  - was sind die neusten Nachrichten
+  - was sind die Nachrichten
+  - die Nachrichten bitte
 
 ---
 type: intent

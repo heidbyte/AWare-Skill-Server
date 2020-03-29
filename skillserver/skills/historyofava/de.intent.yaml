@@ -3,7 +3,11 @@ type: intent
 name: parents
 utterances:
   - wer ist dein vater
+  - wer ist dein papa
+  - wer ist deine mama
   - wer ist deine mutter
+  - wer sind deine eltern
+  - wer ist deine familie
   - wer hat dich erschaffen
 
 
