@@ -2,15 +2,9 @@ skills,German,English
 appcontrol,Öffne Whatsapp,open Whatsapp
 calculator,was ist zehn plus zehn ,what is ten plus ten 
 calendar,was für termine habe ich heute,what is on my calendar for today
-clock,"stelle Timer auf 10 sekunden
-Stelle einen Wecker auf 19 Uhr 30",set an timer for 10 hours
-closeava,"Danke
-Sei still","Thanks
-Stop
-Quiet"
-counter,"Zähle bis 10
-Zähle runter von 10","Count to 10
-Count from 10"
+clock,"stelle Timer auf 10 sekunden",set an timer for 10 hours
+closeava,"Danke","Thanks"
+counter,"Zähle bis 10","Count to 10"
 datetime,wie spät ist es,what time is it
 finances,wieviel ist ein bitcoin wert,whats the price of bitcoin
 historyofava,"wer hat dich erschaffen
@@ -19,9 +13,7 @@ How old are you"
 imagesearch,Zeig mir Bilder von bonobos,display an image of bonobos
 joke,erzähl mir einen Witz,tell me a joke
 musicstream,spiele hello von adele,play hello by adele
-navigation,"Wo ist die Kirche in Uffeln
-Navigiere mich zu Sonnenzeit in Vlotho","Where is the church in vimmerby
-Navigate to sonnenzeit vlotho"
+navigation,"Navigiere mich zu Sonnenzeit in Vlotho","Navigate to sonnenzeit vlotho"
 news,was sind die nachrichten,tell me the news
 peoplesage,wie alt ist donald trump,how old is donald trump
 phonecall,rufe Mama an,call Mom
