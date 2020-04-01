@@ -52,7 +52,7 @@ def google(text,data, language = "en"):
 	'gl': gl
 	}
 
-	try:
+	"""try:
 		qatext = urllib.parse.quote(text)
 		response = urllib.request.urlopen("http://127.0.0.1:8008/?quest=" + qatext + "&lang=" + language)
 		answer = str(response.read()).encode().decode()
@@ -63,7 +63,7 @@ def google(text,data, language = "en"):
 		print("Answered by google")
 		from searxapi import callAPI
 		answer_url = callAPI(text,language)
-		return answer,answer_url
+		return answer,answer_url"""
 	
 	answer = None
 
