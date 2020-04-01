@@ -159,7 +159,7 @@ class serverHelpers:
 			answer = fallbackHandler(self.translated,json.dumps(self.data, indent=2, ensure_ascii=False))
 			if(answer != False and answer != "False"):
 				self.nlu_parsing["skill_category"] = "fallback"
-				answer = str(answer)
+				answer = str(answer).encode().decode()
 				print(answer)
 				self.translate(text = answer,target = self.lang)
 				answer = self.translated
@@ -326,7 +326,7 @@ def foo():
 	if(skill == None or probability <= helper.probability):
 		answer,answer_url = google(helper.text,json.dumps(helper.data, indent=2, ensure_ascii=False), language = helper.nlu_parsing["lang"])
 		if(answer != False and answer != "False"):
-			answer = str(answer)
+			answer = str(answer).encode().decode()
 			print(answer)
 			if(answer_url != None):
 					helper.nlu_parsing["answer_url"] = answer_url
@@ -394,7 +394,7 @@ def foo():
 			
 			answer,answer_url = google(helper.text,json.dumps(helper.data, indent=2, ensure_ascii=False), language = helper.nlu_parsing["lang"])
 			if(answer != False and answer != "False"):
-				answer = str(answer)
+				answer = str(answer).encode().decode()
 				print(answer)
 				if(answer_url != None):
 						helper.nlu_parsing["answer_url"] = answer_url
