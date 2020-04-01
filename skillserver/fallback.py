@@ -55,7 +55,7 @@ def google(text,data, language = "en"):
 	try:
 		qatext = urllib.parse.quote(text)
 		response = urllib.request.urlopen("http://127.0.0.1:8008/?quest=" + qatext + "&lang=" + language)
-		answer = str(response.read())
+		answer = str(response.read()).encode().decode()
 	except:
 		answer = "Error"
 
