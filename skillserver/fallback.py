@@ -9,7 +9,7 @@ import requests as req
 from pandas import DataFrame
 import pandas as pd
 import os.path
-from fallbacks.GoogleAnswers import ask as askGoogle
+
 
 
 def duckduckgo(text):
@@ -52,8 +52,12 @@ def google(text,data, language = "en"):
 	'gl': gl
 	}
 
-	
-	answer = str(askGoogle(text,language))
+	try:
+		qatext = urllib.parse.quote(text)
+		response = urllib.request.urlopen("http://127.0.0.1:8008/?quest=" + qatext + "&lang=" + language)
+		answer = str(response.read())
+	except:
+		answer = "Error"
 
 	if(answer != "Error"):
 		print("Answered by google")
