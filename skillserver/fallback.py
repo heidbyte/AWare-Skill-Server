@@ -85,6 +85,15 @@ def google(text,data, language = "en"):
 		answer_url = api_response["organic_results"][0]["link"]
 	except:
 		pass
+	
+	try:
+		answer_list = api_response["answer_box"]["answers"][0]["rows"]
+		answer = ""
+		for rw in answer_list:
+			answer = answer + rw + "\n"
+		answer_url = api_response["organic_results"][0]["link"]
+	except:
+		pass
 
 
 	if(answer != None):
