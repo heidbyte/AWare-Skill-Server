@@ -157,9 +157,9 @@ def fallbackHandler(text,data):
 	if(answer != False):
 		return answer
 	
-	answer = wolfram_Alpha(text,data)
-	if(answer != False):
-		return answer
+	#answer = wolfram_Alpha(text,data)
+	#if(answer != False):
+	#	return answer
 
 	#answer = duckduckgo(text)
 	#if(answer != False):
