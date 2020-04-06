@@ -150,7 +150,7 @@ def beginn(data, intents):
 			print(e)
 
 
-		return (str(getCalDavEvents(url = url, username = username, password = password, begin = begin)))
+		return str(getCalDavEvents(url = url, username = username, password = password, begin = begin)),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
 	else:
 		try:
 			if(intents["slots"][0]["slotName"] == "datetime"):
