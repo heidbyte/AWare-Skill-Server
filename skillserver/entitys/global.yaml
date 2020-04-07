@@ -16,77 +16,18 @@ values:
 - Hamburg
 - [Munich, München]
 - Bad Oeynhausen
-
----
-type: entity
-name: newskeys
-automatically_extensible: yes
-values:
-- bitcoin
-- fussball
-- football
-- artificial intelligence
-- künstliche intelligenz
-- google
-- android
-- sport
-- donald trump
-- politik
-- börse
-- zoo
-- zebra
-- Wald
-- Klimawandel
-- global warming
-- Bäume
-- Pflanzen
-- Virus
-- Gesundheit
-
-
----
-type: entity
-name: musicArtist
-automatically_extensible: yes
-values:
-- Boards of Canada
-- Easy Star All-Stars
-- The Glitch Mob
-- adele
-- kontra k
-- adel tawil
-- sido
-- eskimo callboy
-- rolling stones
-- beatles
-- dame
-- justin bieber
-- selena gomez
-- raf camora
-- blacktop mojo
-- 3 Doors Down
-- 30 Seconds to Mars
-
-
----
-type: entity
-name: appname
-automatically_extensible: yes
-values:
-- Whatsapp
-- Telegram
-- Snapchat
-- Google News
-- Nextcloud Talk
-- Nextcloud
-- Instagram
-- Signal
-- Session
-- Youtube
-- Brawl stars
-- Clash royale
-- clash of clans
-- brave
-- Canva
-- Discord
-- drive
+- Tokio
+- Jakarta
+- Delhi
+- Manila
+- Seoul
+- Shanghai
+- mumbai
+- peking
+- sao paulo
+- manhattan
+- Bielefeld
+- Löhne
+- Minden
+- Bad Iburg
+- Münster

@@ -3,10 +3,10 @@ type: intent
 name: music
 slots:
   - name: artist
-    entity: snips/musicArtist
+    entity: names
 
   - name: track
-    entity: snips/musicTrack
+    entity: musicTrack
 
 utterances:
   - play [track](hello) by [artist](adele)

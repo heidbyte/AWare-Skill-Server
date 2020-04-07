@@ -13,7 +13,7 @@ type: intent
 name: themenews
 slots:
   - name: thema
-    entity: newskeys
+    entity: names
 utterances:
   - tell me the news about [thema](bitcoin)
   - what are the news of [thema](football)

@@ -15,7 +15,7 @@ type: intent
 name: themenews
 slots:
   - name: thema
-    entity: newskeys
+    entity: names
 utterances:
   - was gibt es neues beim [thema](bitcoin)
   - was ist neu beim [thema](fussball)

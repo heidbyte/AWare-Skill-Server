@@ -7,3 +7,6 @@ pyfasttext
 whatthelang
 wolframalpha
 pandas
+torch
+torchvision
+simpletransformers

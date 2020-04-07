@@ -98,14 +98,14 @@ for lang in langs:
 
 	add_entity(lang)
 	os.system("python3 -m snips_nlu download " + lang)
-	os.system("python3 -m snips_nlu generate-dataset " + lang + " " + lang + ".definition.yaml > definition.json")
+	os.system("python3 -m snips_nlu generate-dataset " + lang + " " + lang + ".definition.yaml > " + lang + ".definition.json")
 
 	try:
 		shutil.rmtree(lang)
 	except Exception as e:
 		print(e)
 
-	DATASET_PATH = Path(__file__).parent / "definition.json"
+	DATASET_PATH = Path(lang + ".definition.json")
 	with DATASET_PATH.open(encoding="utf8") as f:
 	    sample_dataset = json.load(f)
 

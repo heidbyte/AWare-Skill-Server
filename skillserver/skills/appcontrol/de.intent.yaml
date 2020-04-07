@@ -3,7 +3,7 @@ type: intent
 name: openapps
 slots:
   - name: appnames
-    entity: appname
+    entity: names
 
 utterances:
   - öffne [appnames](Galerie)
@@ -13,3 +13,5 @@ utterances:
   - bitte öffne [appnames](Whatsapp)
   - bitte [appnames](Facebook) öffnen
   - öffne die [appnames](Galerie)
+  - öffne mal die [appnames](Galerie)
+  - mach mal die [appnames](Galerie) auf
