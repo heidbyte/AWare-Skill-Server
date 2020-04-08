@@ -90,3 +90,10 @@ utterances:
   - Wecker stellen
   - Alarm stellen
   - erstelle einen Alarm
+  - erinnere mich um [hours](10) Uhr
+  - erinnere mich um [hours](10) Uhr und [minutes](10) Minuten
+  - stelle einen Timer auf [hours](10) Uhr und [minutes](10) Minuten
+  - setze einen Timer auf [hours](10) Uhr und [minutes](10) Minuten
+  - stelle einen Timer auf [hours](10) Uhr
+  - setze einen Timer auf [hours](10) Uhr
+  

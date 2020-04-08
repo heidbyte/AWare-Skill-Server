@@ -48,3 +48,5 @@ utterances:
   - sag mir das Wetter
   - sag mir den Wetterbereich
   - sag mir wie das Wetter wird
+  - wie warm wird es in [city](Minden Lübecke) [datetime](heute)
+  - wie warm wird es [datetime](heute) in [city](Bad Oeynhausen)
