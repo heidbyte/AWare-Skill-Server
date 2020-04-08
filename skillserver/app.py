@@ -27,6 +27,15 @@ from snips_nlu.default_configs import CONFIG_EN
 import linecache
 import sys
 from searxapi import callAPI
+import json
+from simpletransformers.classification import MultiLabelClassificationModel
+import pandas as pd
+import logging
+from glob import glob
+
+logging.basicConfig(level=logging.INFO)
+transformers_logger = logging.getLogger("transformers")
+transformers_logger.setLevel(logging.WARNING)
 
 
 def detect(text):
@@ -103,7 +112,7 @@ class serverHelpers:
 		self.text = data["text"]
 		self.translated = None
 		self.nlu_parsing = None
-		self.probability = 0.6
+		self.probability = 0.7
 		self.answer_type = "answer"
 		self.useTranslator = True
 
@@ -207,11 +216,42 @@ class serverHelpers:
 
 
 
+	def nn(self, langu):
+		try:		
+			myfile = open(langu + ".keys","r")
+			keys = myfile.read().split("\n")
+			myfile.close()
+			numKeys = len(keys)-1
+
+								
+			model = MultiLabelClassificationModel('distilbert', langu + '_transformer', num_labels=numKeys, use_cuda = False, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 15, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
+
+			predictions, raw_outputs = model.predict([self.text])
+			for x in range(numKeys):
+				if(predictions[0][x] == 1):
+					if(str(self.nlu_parsing["intent"]["intentName"]) == str(keys[x])):
+						print("Transformer: " + keys[x] + ": " + str(raw_outputs[0][x]))
+						return True
+
+			return False
+
+		except Exception as e:
+			print(e)
+			return None
+
+
+
 
 	def nlu(self):
 		try:
 			nlu_engine = SnipsNLUEngine.from_path(str(self.lang))
 			self.nlu_parsing = nlu_engine.parse(self.text)
+			if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
+				neural = self.nn(str(self.lang))										
+				if(neural == False and neural != None):
+					self.nlu_parsing["intent"]["probability"] = float(0)
+				else:
+					self.nlu_parsing["intent"]["probability"] = float(1)
 		except Exception as e:
 			print(e)
 			self.translate(src = True)
@@ -219,11 +259,25 @@ class serverHelpers:
 			try:
 				nlu_engine = SnipsNLUEngine.from_path(str(self.lang))
 				self.nlu_parsing = nlu_engine.parse(self.text)
+				if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
+					neural = self.nn(str(self.lang))										
+					if(neural == False and neural != None):
+						self.nlu_parsing["intent"]["probability"] = float(0)
+					else:
+						self.nlu_parsing["intent"]["probability"] = float(1)
 			except Exception as e:
 				print(e)
 
 			nlu_engine = SnipsNLUEngine.from_path("de")
 			self.nlu_parsing = nlu_engine.parse(self.translated)
+
+			if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
+				neural = self.nn(str(self.lang))										
+				if(neural == False and neural != None):
+					self.nlu_parsing["intent"]["probability"] = float(0)
+				else:
+					self.nlu_parsing["intent"]["probability"] = float(1)
+
 
 		self.nlu_parsing["lang"] = self.lang
 
@@ -257,6 +311,13 @@ class serverHelpers:
 		except Exception as e:
 			print(e)
 
+
+		if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
+			neural = self.nn(str(self.lang))										
+			if(neural == False and neural != None):
+				self.nlu_parsing["intent"]["probability"] = float(0)
+			else:
+				self.nlu_parsing["intent"]["probability"] = float(1)
 
 		print(self.nlu_parsing)
 
