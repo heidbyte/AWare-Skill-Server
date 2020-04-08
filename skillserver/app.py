@@ -216,7 +216,7 @@ class serverHelpers:
 
 
 
-	def nn(self, langu):
+	def nn(self, langu, text):
 		try:		
 			myfile = open(langu + ".keys","r")
 			keys = myfile.read().split("\n")
@@ -226,7 +226,7 @@ class serverHelpers:
 								
 			model = MultiLabelClassificationModel('distilbert', langu + '_transformer', num_labels=numKeys, use_cuda = False, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 15, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
 
-			predictions, raw_outputs = model.predict([self.text])
+			predictions, raw_outputs = model.predict([text])
 			for x in range(numKeys):
 				if(predictions[0][x] == 1):
 					if(str(self.nlu_parsing["intent"]["intentName"]) == str(keys[x])):
@@ -247,7 +247,7 @@ class serverHelpers:
 			nlu_engine = SnipsNLUEngine.from_path(str(self.lang))
 			self.nlu_parsing = nlu_engine.parse(self.text)
 			if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
-				neural = self.nn(str(self.lang))										
+				neural = self.nn(str(self.lang),self.text)										
 				if(neural == False and neural != None):
 					self.nlu_parsing["intent"]["probability"] = float(0)
 				else:
@@ -260,7 +260,7 @@ class serverHelpers:
 				nlu_engine = SnipsNLUEngine.from_path(str(self.lang))
 				self.nlu_parsing = nlu_engine.parse(self.text)
 				if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
-					neural = self.nn(str(self.lang))										
+					neural = self.nn(str(self.lang), self.text)										
 					if(neural == False and neural != None):
 						self.nlu_parsing["intent"]["probability"] = float(0)
 					else:
@@ -272,7 +272,7 @@ class serverHelpers:
 			self.nlu_parsing = nlu_engine.parse(self.translated)
 
 			if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
-				neural = self.nn(str(self.lang))										
+				neural = self.nn(str(self.lang), self.translated)										
 				if(neural == False and neural != None):
 					self.nlu_parsing["intent"]["probability"] = float(0)
 				else:
@@ -313,7 +313,7 @@ class serverHelpers:
 
 
 		if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
-			neural = self.nn(str(self.lang))										
+			neural = self.nn(str(self.lang), self.translated)										
 			if(neural == False and neural != None):
 				self.nlu_parsing["intent"]["probability"] = float(0)
 			else:
