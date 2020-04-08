@@ -40,14 +40,27 @@ for fl in list:
 							entlist.append(texts["entity"] + "*" + texts["text"])
 					except:
 						pass
+
+
 				
+				keyList = []
+				for label in data["intents"].keys():
+					if(label == key):
+						keyList.append(1)
+					else:
+						keyList.append(0)
+
+				for it in range(random.randint(1,5)):
+					traindata.append([randomString(random.randint(1,10)) + " " + sentence + " " + randomString(random.randint(1,10)),keyList])
+				print(sentence)
+
 				for entli in entlist:
 					enti = entli.split("*")[0]
 					repl = entli.split("*")[1]
 					counting = 0
 					for enti in data["entities"][enti]["data"]:
 						counting = counting + 1
-						if(counting % 1000 == 0 or counting <= 100):
+						if(counting % 20 == 0 and counting <= 80):
 							repl1 = enti["value"]
 							keyList = []
 							for label in data["intents"].keys():
@@ -55,22 +68,21 @@ for fl in list:
 									keyList.append(1)
 								else:
 									keyList.append(0)
-							for rando in range(random.randint(1,5)):
+							for rando in range(random.randint(0,2)):
 								traindata.append([randomString(random.randint(1,10)) + " " + sentence.replace(repl,repl1) + " " + randomString(random.randint(1,10)),keyList])
+
 						
 						
 						
 						
-						
-	#print(traindata)
+	print(len(traindata))
 	myfile.close()
 	train_df = pd.DataFrame(traindata, columns=['text', 'labels'])
-	model = MultiLabelClassificationModel('albert', 'albert-base-v2', num_labels=numKeys, use_cuda = True, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 15, "train_batch_size": 16,
-  "eval_batch_size": 16})
+	model = MultiLabelClassificationModel('distilbert', 'distilbert-base-multilingual-cased', num_labels=numKeys, use_cuda = True, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 15, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
 	model.train_model(train_df, output_dir = fl.split(".")[0] + "_transformer")
 
 	# Evaluate the model
-	result, model_outputs, wrong_predictions = model.eval_model(eval_df)
+	result, model_outputs, wrong_predictions = model.eval_model(train_df)
 	print(result)
 	print(model_outputs)
 
