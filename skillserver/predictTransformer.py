@@ -14,8 +14,7 @@ myfile.close()
 numKeys = len(keys)-1
 
 					
-model = MultiLabelClassificationModel('albert', 'de_transformer', num_labels=numKeys, use_cuda = True, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 1, "train_batch_size": 8,
-  "eval_batch_size": 8})
+model = MultiLabelClassificationModel('distilbert', 'de_transformer', num_labels=numKeys, use_cuda = True, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 15, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
 
 
 while 1:
@@ -24,7 +23,6 @@ while 1:
 	for x in range(numKeys):
 		if(predictions[0][x] == 1):
 			print(keys[x])
-	
-	print(predictions)
+			print(raw_outputs[0][x])
 
 
