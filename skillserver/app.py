@@ -251,7 +251,7 @@ class serverHelpers:
 				if(neural == False and neural != None):
 					self.nlu_parsing["intent"]["probability"] = float(0)
 				else:
-					self.nlu_parsing["intent"]["probability"] = float(1)
+					self.nlu_parsing["intent"]["probability"] = float(0.9)
 		except Exception as e:
 			print(e)
 			self.translate(src = True)
@@ -264,7 +264,7 @@ class serverHelpers:
 					if(neural == False and neural != None):
 						self.nlu_parsing["intent"]["probability"] = float(0)
 					else:
-						self.nlu_parsing["intent"]["probability"] = float(1)
+						self.nlu_parsing["intent"]["probability"] = float(0.9)
 			except Exception as e:
 				print(e)
 
@@ -276,7 +276,7 @@ class serverHelpers:
 				if(neural == False and neural != None):
 					self.nlu_parsing["intent"]["probability"] = float(0)
 				else:
-					self.nlu_parsing["intent"]["probability"] = float(1)
+					self.nlu_parsing["intent"]["probability"] = float(0.9)
 
 
 		self.nlu_parsing["lang"] = self.lang
@@ -317,7 +317,7 @@ class serverHelpers:
 			if(neural == False and neural != None):
 				self.nlu_parsing["intent"]["probability"] = float(0)
 			else:
-				self.nlu_parsing["intent"]["probability"] = float(1)
+				self.nlu_parsing["intent"]["probability"] = float(0.9)
 
 		print(self.nlu_parsing)
 
