@@ -60,7 +60,7 @@ for fl in list:
 					counting = 0
 					for enti in data["entities"][enti]["data"]:
 						counting = counting + 1
-						if(counting % 20 == 0 and counting <= 80):
+						if(counting % 10 == 0 and counting <= 80):
 							repl1 = enti["value"]
 							keyList = []
 							for label in data["intents"].keys():
@@ -68,7 +68,7 @@ for fl in list:
 									keyList.append(1)
 								else:
 									keyList.append(0)
-							for rando in range(random.randint(0,2)):
+							for rando in range(random.randint(1,2)):
 								traindata.append([randomString(random.randint(1,10)) + " " + sentence.replace(repl,repl1) + " " + randomString(random.randint(1,10)),keyList])
 
 						
