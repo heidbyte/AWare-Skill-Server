@@ -5,12 +5,54 @@ utterances:
   - who is your father
   - who is your mother
   - who has build you
+  - who has created you
 
 
 ---
 type: intent
 name: creationtime
 utterances:
-  - when was you born
+  - when were you born
   - how old are you
   - whats the time you are existing
+  - since when are you existing
+
+
+---
+type: intent
+name: mood
+utterances:
+  - how are you doing
+  - how you doin
+
+
+---
+type: intent
+name: do_something
+utterances:
+  - whatcha doin
+  - what are ya doin
+  - what are you doing
+  - what are you doing right now
+
+
+---
+type: intent
+name: hobby
+utterances:
+  - do you have hobbies
+  - do you have any hobbies
+  - do you have a hobby
+  - what are your hobbies
+  - what is your hobby
+
+
+---
+type: intent
+name: siblings
+utterances:
+  - do you have a brother
+  - do you have brothers
+  - do you have a sister
+  - do you have sisters
+  - do you have siblings

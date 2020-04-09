@@ -18,3 +18,43 @@ utterances:
   - wann wurdest du geboren
   - wie alt bist du
   - wie lange gibt es dich
+
+
+---
+type: intent
+name: mood
+utterances:
+  - wie geht es dir
+  - wie geht es dir ava
+  - wie gehts
+
+
+---
+type: intent
+name: do_something
+utterances:
+  - was machst du gerade
+  - was machst du
+  - was machst du so
+  - was geht
+
+
+---
+type: intent
+name: hobby
+utterances:
+  - hast du hobbys
+  - hast du ein hobby
+  - was sind deine hobbys
+  - was ist dein hobby
+
+
+---
+type: intent
+name: siblings
+utterances:
+  - hast du einen bruder
+  - hast du brueder
+  - hast du eine schwester
+  - hast du schwestern
+  - hast du geschwister
