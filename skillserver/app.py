@@ -40,6 +40,10 @@ transformers_logger.setLevel(logging.WARNING)
 
 snips_engines = {"firstkey": "firstkey"}
 
+transformer_engines = {"firstkey": "firstkey"}
+
+transformer_keys = {"firstkey": "firstkey"}
+
 
 def detect(text):
 	wtl = WhatTheLang()
@@ -220,14 +224,24 @@ class serverHelpers:
 
 
 	def nn(self, langu, text):
-		try:		
-			myfile = open(langu + ".keys","r")
-			keys = myfile.read().split("\n")
-			myfile.close()
-			numKeys = len(keys)-1
+		try:
 
-								
-			model = MultiLabelClassificationModel('roberta', langu + '_transformer', num_labels=numKeys, use_cuda = False, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 15, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
+			if(langu in transformer_keys.keys()):
+				keys = transformer_keys[langu]
+				numKeys = len(keys)-1
+			else:
+				myfile = open(langu + ".keys","r")
+				keys = myfile.read().split("\n")
+				myfile.close()
+				numKeys = len(keys)-1
+				transformer_keys[langu] = keys
+
+
+			if(langu in transformer_engines.keys()):
+				model = transformer_engines[langu]
+			else:
+				model = MultiLabelClassificationModel('roberta', langu + '_transformer', num_labels=numKeys, use_cuda = False, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 15, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
+				transformer_engines[langu] = model
 
 			predictions, raw_outputs = model.predict([text])
 			for x in range(numKeys):
