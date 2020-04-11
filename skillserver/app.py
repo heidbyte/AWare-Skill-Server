@@ -38,6 +38,9 @@ transformers_logger = logging.getLogger("transformers")
 transformers_logger.setLevel(logging.WARNING)
 
 
+snips_engines = {"firstkey": "firstkey"}
+
+
 def detect(text):
 	wtl = WhatTheLang()
 	return wtl.predict_lang(text)
@@ -243,8 +246,14 @@ class serverHelpers:
 
 
 	def nlu(self):
+		global snips_engines
 		try:
-			nlu_engine = SnipsNLUEngine.from_path(str(self.lang))
+			if(self.lang in snips_engines.keys()):
+				nlu_engine = snips_engines[self.lang]
+			else:
+				snips_engines[self.lang] = SnipsNLUEngine.from_path(str(self.lang))
+
+			nlu_engine = snips_engines[self.lang]
 			self.nlu_parsing = nlu_engine.parse(self.text)
 			if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
 				neural = self.nn(str(self.lang),self.text)										
@@ -257,7 +266,12 @@ class serverHelpers:
 			self.translate(src = True)
 
 			try:
-				nlu_engine = SnipsNLUEngine.from_path(str(self.lang))
+				if(self.lang in snips_engines.keys()):
+					nlu_engine = snips_engines[self.lang]
+				else:
+					snips_engines[self.lang] = SnipsNLUEngine.from_path(str(self.lang))
+
+				nlu_engine = snips_engines[self.lang]
 				self.nlu_parsing = nlu_engine.parse(self.text)
 				if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
 					neural = self.nn(str(self.lang), self.text)										
@@ -268,7 +282,14 @@ class serverHelpers:
 			except Exception as e:
 				print(e)
 
-			nlu_engine = SnipsNLUEngine.from_path("de")
+
+			if("de" in snips_engines.keys()):
+				nlu_engine = snips_engines["de"]
+			else:
+				snips_engines[self.lang] = SnipsNLUEngine.from_path("de")
+
+			nlu_engine = snips_engines["de"]
+
 			self.nlu_parsing = nlu_engine.parse(self.translated)
 
 			if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
@@ -297,7 +318,12 @@ class serverHelpers:
 
 	def nlu2(self):
 		print("Second nlu")
-		nlu_engine = SnipsNLUEngine.from_path("de")
+		if("de" in snips_engines.keys()):
+			nlu_engine = snips_engines["de"]
+		else:
+			snips_engines[self.lang] = SnipsNLUEngine.from_path("de")
+
+		nlu_engine = snips_engines["de"]
 		self.translate()
 		self.nlu_parsing = nlu_engine.parse(self.translated)
 		self.nlu_parsing["lang"] = self.lang
