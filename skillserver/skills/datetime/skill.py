@@ -34,7 +34,7 @@ def beginn(data, intents):
 		h = int(datetime.now().strftime('%H'))
 		m = int(datetime.now().strftime('%M'))
 		answer = generate_answer(h,m,datetime.now().strftime('%d.%m.%Y'))
-		return answer
+		return answer,"https://www.uhrzeit.org/weltzeit.php"
 		
 
 
