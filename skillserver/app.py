@@ -115,7 +115,7 @@ class serverHelpers:
 		self.text = data["text"]
 		self.translated = None
 		self.nlu_parsing = None
-		self.probability = 0.7
+		self.probability = 0.6
 		self.answer_type = "answer"
 		self.useTranslator = True
 
