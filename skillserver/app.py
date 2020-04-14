@@ -102,15 +102,6 @@ def PrintException():
 	line = linecache.getline(filename, lineno, f.f_globals)
 	print('EXCEPTION IN ({}, LINE {} "{}"): {}'.format(filename, lineno, line.strip(), exc_obj))
 
-	
-# install requirements for each skill if needed
-def install_dependencies(path):
-	os.system("pip3 install -r " + path)
-
-list = glob("skills/*/requirements.txt")
-for x in list:
-	install_dependencies(x)
-install_dependencies("requirements.txt")
 
 
 class serverHelpers:
@@ -182,7 +173,7 @@ class serverHelpers:
 				self.nlu_parsing["speak"] = self.parseAnswer(answer)
 				if(len(self.nlu_parsing["speak"]) < 1):
 					return "An error occured"
-				self.nlu_parsing["answer_url"] = callAPI(self.text,self.lang)
+				self.nlu_parsing["answer_url"] = "ask_search_engine"
 				self.nlu_parsing["answer_type"] = self.answer_type
 				results = json.dumps(self.nlu_parsing, indent=2, ensure_ascii=False)
 				self.info("Fallback succesfull")
@@ -192,7 +183,7 @@ class serverHelpers:
 				self.nlu_parsing["skill_category"] = "unknown"
 				lang = self.nlu_parsing["lang"]
 				self.nlu_parsing["answer_type"] = self.answer_type
-				self.nlu_parsing["answer_url"] = callAPI(self.text,self.lang)
+				self.nlu_parsing["answer_url"] = "ask_search_engine"
 				
 				de = ["Tut mir leid. Das weiß ich noch nicht, aber vielleicht hilft dir diese Website"]
 				en = ["Sorry, I dont know this at the moment but maybe this webpage can help you"]
@@ -372,6 +363,13 @@ def hello():
 	return "Hello World"
 
 
+
+@app.route('/url', methods=['GET'])
+def searxUrl():
+	url = callAPI(request.args["text"],request.args["lang"])
+	return {"url": url}
+
+
 @app.route('/', methods=['POST', 'GET']) 
 def foo():
 	"""
@@ -530,7 +528,7 @@ def foo():
 			helper.nlu_parsing["speak"] = helper.parseAnswer(helper.translated)
 
 			if(url == None):
-				helper.nlu_parsing["answer_url"] = callAPI(helper.text,helper.lang)
+				helper.nlu_parsing["answer_url"] = "ask_search_engine"
 			else:
 				helper.nlu_parsing["answer_url"] = url
 
