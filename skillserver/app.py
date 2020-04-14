@@ -32,6 +32,11 @@ from simpletransformers.classification import MultiLabelClassificationModel
 import pandas as pd
 import logging
 from glob import glob
+import argparse
+
+ap = argparse.ArgumentParser()
+ap.add_argument("-p", "--port", required=False, type=int, default = 5000, help="Number of the port")
+args = vars(ap.parse_args())
 
 logging.basicConfig(level=logging.INFO)
 transformers_logger = logging.getLogger("transformers")
@@ -545,4 +550,4 @@ def foo():
 
 if __name__ == "__main__":
 	app.secret_key = os.urandom(12)
-	app.run(host='0.0.0.0', port=5000)
+	app.run(host='0.0.0.0', port=args["port"])
