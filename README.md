@@ -2,6 +2,8 @@
 
 ***This software is still in development and not ready for production environment yet!***
 
+**[Checkout the official Android client](https://play.google.com/store/apps/details?id=io.aware.ava)**
+
 **We are A\\Ware**\
 \
 A german start up with focus on software development and artificial intelligence.
@@ -113,6 +115,9 @@ The answer the server return to device looks like:
 ```
 
 Please orientate yourself on existing skills to develop new ones
+
+
+### **[Checkout the official Android client](https://play.google.com/store/apps/details?id=io.aware.ava)**
 
 ### **3party**
 
