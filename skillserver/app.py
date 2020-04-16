@@ -226,7 +226,7 @@ class serverHelpers:
 				keys = transformer_keys[langu]
 				numKeys = len(keys)-1
 			else:
-				myfile = open(langu + ".keys","r")
+				myfile = open("models/" + langu + ".keys","r")
 				keys = myfile.read().split("\n")
 				myfile.close()
 				numKeys = len(keys)-1
@@ -236,7 +236,7 @@ class serverHelpers:
 			if(langu in transformer_engines.keys()):
 				model = transformer_engines[langu]
 			else:
-				model = MultiLabelClassificationModel('roberta', langu + '_transformer', num_labels=numKeys, use_cuda = False, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 15, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
+				model = MultiLabelClassificationModel('roberta',"models/" +  langu + '_transformer', num_labels=numKeys, use_cuda = False, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 15, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
 				transformer_engines[langu] = model
 
 			predictions, raw_outputs = model.predict([text])
@@ -261,7 +261,7 @@ class serverHelpers:
 			if(self.lang in snips_engines.keys()):
 				nlu_engine = snips_engines[self.lang]
 			else:
-				snips_engines[self.lang] = SnipsNLUEngine.from_path(str(self.lang))
+				snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + str(self.lang))
 
 			nlu_engine = snips_engines[self.lang]
 			self.nlu_parsing = nlu_engine.parse(self.text)
@@ -279,7 +279,7 @@ class serverHelpers:
 				if(self.lang in snips_engines.keys()):
 					nlu_engine = snips_engines[self.lang]
 				else:
-					snips_engines[self.lang] = SnipsNLUEngine.from_path(str(self.lang))
+					snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + str(self.lang))
 
 				nlu_engine = snips_engines[self.lang]
 				self.nlu_parsing = nlu_engine.parse(self.text)
@@ -296,7 +296,7 @@ class serverHelpers:
 			if("de" in snips_engines.keys()):
 				nlu_engine = snips_engines["de"]
 			else:
-				snips_engines[self.lang] = SnipsNLUEngine.from_path("de")
+				snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + "de")
 
 			nlu_engine = snips_engines["de"]
 
@@ -331,7 +331,7 @@ class serverHelpers:
 		if("de" in snips_engines.keys()):
 			nlu_engine = snips_engines["de"]
 		else:
-			snips_engines[self.lang] = SnipsNLUEngine.from_path("de")
+			snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + "de")
 
 		nlu_engine = snips_engines["de"]
 		self.translate()
