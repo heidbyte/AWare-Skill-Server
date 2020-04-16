@@ -1,0 +1,23 @@
+---
+type: intent
+name: presnumber
+slots:
+  - name: numbered
+    entity: snips/ordinal
+
+utterances:
+  - wer war der [numbered](erste) präsident der usa
+  - wer war der [numbered](zweite) amerikanische präsident
+  - wer war der [numbered](dritte) präsident der vereinigten staaten
+  - wer war der [numbered](vierte) präsident von amerika
+
+---
+type: intent
+name: whichpres
+slots:
+  - name: president
+    entity: names
+
+
+utterances:
+  - der wievielte Präsident war [president](Barack Obama)

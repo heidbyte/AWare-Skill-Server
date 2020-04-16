@@ -1,0 +1,22 @@
+---
+type: intent
+name: presnumber
+slots:
+  - name: numbered
+    entity: snips/ordinal
+
+utterances:
+  - who was the [numbered](first) präsident of usa
+  - who was the [numbered](second) präsident of united states
+  - who was the [numbered](third) präsident of america
+
+---
+type: intent
+name: whichpres
+slots:
+  - name: president
+    entity: names
+
+
+utterances:
+  - which president was [president](Barack Obama)
