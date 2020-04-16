@@ -526,11 +526,12 @@ def foo():
 			if(helper.useTranslator == True):
 				try:
 					helper.translate(text = speak,target = helper.lang)
+					helper.nlu_parsing["speak"] = helper.parseAnswer(helper.translated)
 				except:
 					#speak = translate(speak,lang)
-					pass
-			
-			helper.nlu_parsing["speak"] = helper.parseAnswer(helper.translated)
+					helper.nlu_parsing["speak"] = helper.parseAnswer(speak)
+			else:
+				helper.nlu_parsing["speak"] = helper.parseAnswer(speak)
 
 			if(url == None):
 				helper.nlu_parsing["answer_url"] = "ask_search_engine"
