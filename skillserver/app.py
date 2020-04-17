@@ -363,9 +363,9 @@ class serverHelpers:
 
 app = Flask(__name__)
 
-@app.route('/hello', methods=['GET'])
+@app.route('/version', methods=['GET'])
 def hello():
-	return "Hello World"
+	return "108 commits"
 
 
 
