@@ -78,7 +78,7 @@ for fl in list:
 	print(len(traindata))
 	myfile.close()
 	train_df = pd.DataFrame(traindata, columns=['text', 'labels'])
-	model = MultiLabelClassificationModel('roberta', 'distilroberta-base', num_labels=numKeys, use_cuda = True, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 8, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
+	model = MultiLabelClassificationModel('roberta', 'distilroberta-base', num_labels=numKeys, use_cuda = True, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 10, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
 	model.train_model(train_df, output_dir = fl.split(".")[0] + "_transformer")
 
 	# Evaluate the model
