@@ -9,7 +9,8 @@ utterances:
   - wer war der [numbered](erste) präsident der usa
   - wer war der [numbered](zweite) amerikanische präsident
   - wer war der [numbered](dritte) präsident der vereinigten staaten
-  - wer war der [numbered](vierte) präsident von amerika
+  - wer war der [numbered](vierte) präsident von amerika,
+  - wer war der [numbered](44) präsident der usa
 
 ---
 type: intent
@@ -21,3 +22,6 @@ slots:
 
 utterances:
   - der wievielte Präsident war [president](Barack Obama)
+  - der wievielte amerikanische präsident war [president](barack obama)
+  - der wievielte präsident war [president](washington)
+  - der wievielte amerikanische präsident war [president](walker bush)

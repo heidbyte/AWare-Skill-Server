@@ -21,6 +21,13 @@ utterances:
   - was ist die Uhrzeit
   - wie spät ist es gerade
   - wie spät ist es jetzt gerade
+  - wie spät ist es gerade eigentlich
+  - kannst du mir sagen wie spät es ist
+  - wie spät ist es jetzt
+  - wie spät ist es ganz genau
+  - wie spät ist es eigentlich gerade
+  - wie spät ist es jetzt  gerade eigentlich
+  - wie spät ist es in jetzt gerade
 
 
 ---
@@ -37,3 +44,4 @@ utterances:
   - welcher tag ist es in [city](usa)
   - bitte sag mir die zeit von [city](america)
   - sag mir die zeit in [city](russia)
+  - wie spät ist es in [city](deutschland)

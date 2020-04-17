@@ -50,3 +50,9 @@ utterances:
   - sag mir wie das Wetter wird
   - wie warm wird es in [city](Minden Lübecke) [datetime](heute)
   - wie warm wird es [datetime](heute) in [city](Bad Oeynhausen)
+  - was ist das Wetter in [city](Boston)
+  - wie ist das wetter in [city](kirchlengern)
+  - wie warm ist es in [city](vlotho)
+  - wie ist das wetter in [city](italien)
+  - wie wird das wetter in [city](vlotho) [datetime](heute)
+  - wärst du so höflich mir zu bitte zu sagen wie das wetter [datetime](morgen) vermutlich in [city](bielefeld) wird
