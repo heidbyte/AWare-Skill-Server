@@ -2,98 +2,87 @@
 type: intent
 name: timer
 slots:
-  - name: hours
-    entity: snips/number
-
-  - name: minutes
-    entity: snips/number
-
-  - name: seconds
-    entity: snips/number
+  - name: time
+    entity: snips/duration
 
 utterances:
-  - stelle einen Timer auf [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden 
-  - starte einen Timer für [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden
-  - stelle einen Countdown auf [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden 
-  - starte einen Countdown für [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden
-  - stelle einen Timer auf [minutes](10) Minuten [seconds](10) Sekunden 
-  - starte einen Timer für [minutes](10) Minuten [seconds](10) Sekunden
-  - stelle einen Countdown [minutes](10) Minuten [seconds](10) Sekunden 
-  - starte einen Countdown [minutes](10) Minuten [seconds](10) Sekunden
-  - stelle einen Timer auf [minutes](10) Minuten und [seconds](10) Sekunden 
-  - starte einen Timer für [hours](10) Stunden [seconds](10) Sekunden
-  - stelle einen Countdown auf [seconds](10) Sekunden 
-  - starte einen Countdown für [minutes](10) Minuten und [seconds](10) Sekunden
-  - erinnere mich in [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden 
-  - wecke mich in [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden
-  - melde dich in [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden 
-  - sag mir in [hours](10) Stunden [minutes](10) Minuten und [seconds](10) Sekunden bescheid
-  - sag mir in [minutes](10) Minuten und [seconds](10) Sekunden bescheid
-  - erinnere mich in [hours](10) Stunden [seconds](10) Sekunden
-  - melde dich in [seconds](10) Sekunden 
-  - wecke mich in [minutes](10) Minuten und [seconds](10) Sekunden
-  - Timer [seconds](10) Sekunden
-  - Timer [minutes](10) Minuten
-  - Timer [hours](10) Stunden
-  - Timer [hours](10) Stunden und [minutes](10) Minuten
-  - Timer [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
-  - Timer [minutes](10) Minuten und [seconds](10) Sekunden
-  - Timer in [seconds](10) Sekunden
-  - Timer in [minutes](10) Minuten
-  - Timer in [hours](10) Stunden
-  - Timer in [hours](10) Stunden und [minutes](10) Minuten
-  - Timer in [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
-  - Timer in [minutes](10) Minuten und [seconds](10) Sekunden
-  - Timer auf [seconds](10) Sekunden
-  - Timer auf [minutes](10) Minuten
-  - Timer auf [hours](10) Stunden
-  - Timer auf [hours](10) Stunden und [minutes](10) Minuten
-  - Timer auf [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
-  - Timer auf [minutes](10) Minuten und [seconds](10) Sekunden
-  - Timer stellen [seconds](10) Sekunden
-  - Timer stellen [minutes](10) Minuten
-  - Timer stellen [hours](10) Stunden
-  - Timer stellen [hours](10) Stunden und [minutes](10) Minuten
-  - Timer stellen [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
-  - Timer stellen [minutes](10) Minuten und [seconds](10) Sekunden
-  - stelle Timer auf [seconds](10) Sekunden
-  - stelle Timer auf [minutes](10) Minuten
-  - stelle Timer auf [hours](10) Stunden
-  - stelle Timer auf [hours](10) Stunden und [minutes](10) Minuten
-  - stelle Timer auf [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
-  - stelle Timer auf [minutes](10) Minuten und [seconds](10) Sekunden
-  - setze einen Timer auf [seconds](10) Sekunden
-  - setze einen Timer auf [minutes](10) Minuten
-  - setze einen Timer auf [hours](10) Stunden
-  - setze einen Timer auf [hours](10) Stunden und [minutes](10) Minuten
-  - setze einen Timer auf [hours](10) Stunden und [minutes](10) Minuten und [seconds](10) Sekunden
-  - setze einen Timer auf [minutes](10) Minuten und [seconds](10) Sekunden
+  - stelle einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden) 
+  - starte einen Timer für [time](10 Minuten und 10 Sekunden) 
+  - stelle einen Countdown auf [time](10 Sekunden) 
+  - starte einen Countdown für [time](10 Minuten) 
+  - stelle einen Timer auf [time](10 Minuten und 10 Sekunden) 
+  - starte einen Timer für [time](10 Stunden und 10 Sekunden) 
+  - stelle einen Countdown [time](10 Stunden)
+  - starte einen Countdown [time](10 Stunden und 10 Sekunden)
+  - stelle einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - starte einen Timer für [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - stelle einen Countdown auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - starte einen Countdown für [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - erinnere mich in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - wecke mich in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - melde dich in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - sag mir in [time](10 Stunden 10 Minuten und 10 Sekunden) bescheid
+  - sag mir in [time](10 Stunden 10 Minuten und 10 Sekunden) bescheid
+  - erinnere mich in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - melde dich in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - wecke mich in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer in [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer stellen [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer stellen [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer stellen [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer stellen [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer stellen [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - Timer stellen [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - stelle Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - stelle Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - stelle Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - stelle Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - stelle Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - stelle Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - setze einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - setze einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - setze einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - setze einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - setze einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - setze einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
 
 ---
 type: intent
 name: alarm
 slots:
-  - name: hours
-    entity: snips/number
+  - name: time
+    entity: snips/datetime
 
-  - name: minutes
-    entity: snips/number
-
-  - name: seconds
-    entity: snips/number
 
 utterances:
-  - stelle einen Wecker auf [hours](10) Uhr [minutes](10) und [seconds](10) Sekunden 
-  - stelle einen Wecker auf [hours](10) Uhr
-  - mache einen Wecker für [hours](10) Uhr [minutes](10)
+  - stelle einen Wecker auf [time](10 Uhr 10 Minuten und 10 Sekunden) 
+  - stelle einen Wecker auf [time](10 Uhr 10) 
+  - mache einen Wecker für [time](10:15 Uhr)
   - stelle einen Wecker
   - Wecker stellen
   - Alarm stellen
   - erstelle einen Alarm
-  - erinnere mich um [hours](10) Uhr
-  - erinnere mich um [hours](10) Uhr und [minutes](10) Minuten
-  - stelle einen Timer auf [hours](10) Uhr und [minutes](10) Minuten
-  - setze einen Timer auf [hours](10) Uhr und [minutes](10) Minuten
-  - stelle einen Timer auf [hours](10) Uhr
-  - setze einen Timer auf [hours](10) Uhr
+  - erinnere mich um [time](10:15 Uhr)
+  - erinnere mich um [time](10 Uhr dreißig)
+  - stelle einen Timer auf [time](zehn uhr dreißig)
+  - setze einen Timer auf [time](zehn Uhr fünfzehn)
+  - stelle einen Timer auf [time](10:15 Uhr)
+  - setze einen Timer auf [time](10:15 Uhr)
   

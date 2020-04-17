@@ -269,7 +269,7 @@ class serverHelpers:
 				neural = self.nn(str(self.lang),self.text)										
 				if(neural == False and neural != None):
 					self.nlu_parsing["intent"]["probability"] = float(0)
-				else:
+				elif(neural == True and neural != None):
 					self.nlu_parsing["intent"]["probability"] = float(0.9)
 		except Exception as e:
 			print(e)
@@ -287,7 +287,7 @@ class serverHelpers:
 					neural = self.nn(str(self.lang), self.text)										
 					if(neural == False and neural != None):
 						self.nlu_parsing["intent"]["probability"] = float(0)
-					else:
+					elif(neural == True and neural != None):
 						self.nlu_parsing["intent"]["probability"] = float(0.9)
 			except Exception as e:
 				print(e)
@@ -306,7 +306,7 @@ class serverHelpers:
 				neural = self.nn(str(self.lang), self.translated)										
 				if(neural == False and neural != None):
 					self.nlu_parsing["intent"]["probability"] = float(0)
-				else:
+				elif(neural == True and neural != None):
 					self.nlu_parsing["intent"]["probability"] = float(0.9)
 
 
@@ -352,7 +352,7 @@ class serverHelpers:
 			neural = self.nn(str(self.lang), self.translated)										
 			if(neural == False and neural != None):
 				self.nlu_parsing["intent"]["probability"] = float(0)
-			else:
+			elif(neural == True and neural != None):
 				self.nlu_parsing["intent"]["probability"] = float(0.9)
 
 		print(self.nlu_parsing)
