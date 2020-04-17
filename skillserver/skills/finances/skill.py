@@ -16,7 +16,7 @@ def getSlotbyName(slotname, datas):
 
 		return None
 
-			
+
 	except Exception as e:
 		print(e)
 		return None
@@ -32,15 +32,16 @@ def beginn(data, intents):
 	intents = json.loads(intents)
 	question = intents["input"]
 	lang = intents["lang"]
-	
+
 	answer = ""
 
 	appnames = getSlotbyName("appnames",intents)
-	appnames = appnames[:-2]
 	quantity = getSlotbyName("quantity",intents)
 
 	if(appnames == None):
 		return False
+
+	appnames = appnames[:-2]
 
 	try:
 		with urllib.request.urlopen("https://financialmodelingprep.com/api/v3/search?query=" + urllib.parse.quote(appnames) + "&limit=5=") as url:

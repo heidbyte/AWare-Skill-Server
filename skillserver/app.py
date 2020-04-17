@@ -77,7 +77,7 @@ def translate(text, target = "en", src = False):
 
 
 def ip2loc(ip):
-	r = requests.get(url = "https://freegeoip.app/json/" + str(ip)) 
+	r = requests.get(url = "https://freegeoip.app/json/" + str(ip))
 	answer = r.text
 	datas = json.loads(answer)
 	answer = datas["city"]
@@ -124,7 +124,7 @@ class serverHelpers:
 		else:
 			self.detect()
 
-	
+
 	def info(self,text):
 		print("\n")
 		print("*"*5)
@@ -189,7 +189,7 @@ class serverHelpers:
 				lang = self.nlu_parsing["lang"]
 				self.nlu_parsing["answer_type"] = self.answer_type
 				self.nlu_parsing["answer_url"] = "ask_search_engine"
-				
+
 				de = ["Tut mir leid. Das weiß ich noch nicht, aber vielleicht hilft dir diese Website"]
 				en = ["Sorry, I dont know this at the moment but maybe this webpage can help you"]
 
@@ -197,11 +197,11 @@ class serverHelpers:
 					self.nlu_parsing["speak"] = random.choice(de)
 				else:
 					self.nlu_parsing["speak"] = random.choice(en)
-				
+
 				results = json.dumps(self.nlu_parsing, indent=2, ensure_ascii=False)
 				return results
-				
-				
+
+
 		except Exception as e:
 			self.PrintException()
 			return "An error occured"
@@ -266,7 +266,7 @@ class serverHelpers:
 			nlu_engine = snips_engines[self.lang]
 			self.nlu_parsing = nlu_engine.parse(self.text)
 			if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
-				neural = self.nn(str(self.lang),self.text)										
+				neural = self.nn(str(self.lang),self.text)
 				if(neural == False and neural != None):
 					self.nlu_parsing["intent"]["probability"] = float(0)
 				elif(neural == True and neural != None):
@@ -284,7 +284,7 @@ class serverHelpers:
 				nlu_engine = snips_engines[self.lang]
 				self.nlu_parsing = nlu_engine.parse(self.text)
 				if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
-					neural = self.nn(str(self.lang), self.text)										
+					neural = self.nn(str(self.lang), self.text)
 					if(neural == False and neural != None):
 						self.nlu_parsing["intent"]["probability"] = float(0)
 					elif(neural == True and neural != None):
@@ -303,7 +303,7 @@ class serverHelpers:
 			self.nlu_parsing = nlu_engine.parse(self.translated)
 
 			if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
-				neural = self.nn(str(self.lang), self.translated)										
+				neural = self.nn(str(self.lang), self.translated)
 				if(neural == False and neural != None):
 					self.nlu_parsing["intent"]["probability"] = float(0)
 				elif(neural == True and neural != None):
@@ -316,7 +316,7 @@ class serverHelpers:
 			slots = self.nlu_parsing["slots"]
 			for x in slots:
 				self.nlu_parsing[x["slotName"]] = x["value"]["value"]
-				
+
 
 		except Exception as e:
 			print(e)
@@ -342,14 +342,14 @@ class serverHelpers:
 			slots = self.nlu_parsing["slots"]
 			for x in slots:
 				self.nlu_parsing[x["slotName"]] = x["value"]["value"]
-				
+
 
 		except Exception as e:
 			print(e)
 
 
 		if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
-			neural = self.nn(str(self.lang), self.translated)										
+			neural = self.nn(str(self.lang), self.translated)
 			if(neural == False and neural != None):
 				self.nlu_parsing["intent"]["probability"] = float(0)
 			elif(neural == True and neural != None):
@@ -365,7 +365,7 @@ app = Flask(__name__)
 
 @app.route('/version', methods=['GET'])
 def hello():
-	return "108 commits"
+	return "109 commits"
 
 
 
@@ -375,7 +375,7 @@ def searxUrl():
 	return {"url": url}
 
 
-@app.route('/', methods=['POST', 'GET']) 
+@app.route('/', methods=['POST', 'GET'])
 def foo():
 	"""
 	important variables:
@@ -406,16 +406,16 @@ def foo():
 			text = data["text"]
 		except:
 			return "No text given"
-		
-		
-	
+
+
+
 	try:
 		if(data["text"] == None or len(data["text"]) < 2):
 			return "No text given"
-		
+
 	except:
 		return "No text given"
-	
+
 
 
 	helper = serverHelpers(data)
@@ -426,7 +426,7 @@ def foo():
 	nlu_results = json.loads(json.dumps(helper.nlu_parsing, indent=2))
 	skill = nlu_results["intent"]["intentName"]
 	probability = float(nlu_results["intent"]["probability"])
-	
+
 	if(skill == None or probability <= helper.probability):
 		answer,answer_url = google(helper.text,json.dumps(helper.data, indent=2, ensure_ascii=False), language = helper.nlu_parsing["lang"])
 		if(answer != False and answer != "False"):
@@ -441,25 +441,25 @@ def foo():
 				results = json.dumps(helper.nlu_parsing, indent=2, ensure_ascii=False)
 				helper.info("Fallback succesfull")
 				return results
-		
-		
+
+
 		helper.nlu2()
 
 		nlu_results = json.loads(json.dumps(helper.nlu_parsing, indent=2))
 		skill = nlu_results["intent"]["intentName"]
 		probability = float(nlu_results["intent"]["probability"])
-		
+
 		if(skill == None or probability <= helper.probability):
-			
+
 			return helper.callFallback()
 
 
-	
+
 	skill = skill.split("_")
 	skill = skill[0]
 	category = skill
 	helper.nlu_parsing["skill_category"] = category
-		
+
 	skill = "skills." + skill + ".skill"
 	mod=importlib.import_module(skill)
 	results = ""
@@ -495,7 +495,7 @@ def foo():
 		info(skill)
 
 		if(speak == False):
-			
+
 			answer,answer_url = google(helper.text,json.dumps(helper.data, indent=2, ensure_ascii=False), language = helper.nlu_parsing["lang"])
 			if(answer != False and answer != "False"):
 				answer = str(answer).encode().decode()
@@ -505,13 +505,13 @@ def foo():
 				helper.nlu_parsing["speak"] = helper.parseAnswer(answer)
 				helper.nlu_parsing["skill_category"] = "fallback"
 				helper.nlu_parsing["answer_type"] = helper.answer_type
-				
+
 				if(len(helper.nlu_parsing["speak"]) > 1):
 					results = json.dumps(helper.nlu_parsing, indent=2, ensure_ascii=False)
 					helper.info("Fallback succesfull")
 					return results
-			
-			
+
+
 			try:
 				return helper.callFallback()
 
