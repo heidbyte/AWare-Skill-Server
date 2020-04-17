@@ -6,12 +6,12 @@ slots:
     entity: snips/duration
 
 utterances:
-  - stelle einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden) 
-  - starte einen Timer für [time](10 Minuten und 10 Sekunden) 
-  - stelle einen Countdown auf [time](10 Sekunden) 
-  - starte einen Countdown für [time](10 Minuten) 
-  - stelle einen Timer auf [time](10 Minuten und 10 Sekunden) 
-  - starte einen Timer für [time](10 Stunden und 10 Sekunden) 
+  - stelle einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - starte einen Timer für [time](10 Minuten und 10 Sekunden)
+  - stelle einen Countdown auf [time](10 Sekunden)
+  - starte einen Countdown für [time](10 Minuten)
+  - stelle einen Timer auf [time](10 Minuten und 10 Sekunden)
+  - starte einen Timer für [time](10 Stunden und 10 Sekunden)
   - stelle einen Countdown [time](10 Stunden)
   - starte einen Countdown [time](10 Stunden und 10 Sekunden)
   - stelle einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
@@ -62,6 +62,9 @@ utterances:
   - setze einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
   - setze einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
   - setze einen Timer auf [time](10 Stunden 10 Minuten und 10 Sekunden)
+  - stelle bitte den timer für mich auf [time](20 minuten)
+  - stelle einen timer auf [time](10 sekunden)
+  - stelle einen timer auf [time](eine minute 10)
 
 ---
 type: intent
@@ -72,8 +75,8 @@ slots:
 
 
 utterances:
-  - stelle einen Wecker auf [time](10 Uhr 10 Minuten und 10 Sekunden) 
-  - stelle einen Wecker auf [time](10 Uhr 10) 
+  - stelle einen Wecker auf [time](10 Uhr 10 Minuten und 10 Sekunden)
+  - stelle einen Wecker auf [time](10 Uhr 10)
   - mache einen Wecker für [time](10:15 Uhr)
   - stelle einen Wecker
   - Wecker stellen
@@ -85,4 +88,3 @@ utterances:
   - setze einen Timer auf [time](zehn Uhr fünfzehn)
   - stelle einen Timer auf [time](10:15 Uhr)
   - setze einen Timer auf [time](10:15 Uhr)
-  
