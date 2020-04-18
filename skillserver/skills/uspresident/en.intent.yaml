@@ -5,10 +5,16 @@ slots:
   - name: numbered
     entity: snips/ordinal
 
+  - name: number
+    entity: snips/number
+
 utterances:
   - who was the [numbered](first) präsident of usa
   - who was the [numbered](second) präsident of united states
   - who was the [numbered](third) präsident of america
+  - who was the [number](1) präsident of usa
+  - who was the [number](2) präsident of united states
+  - who was the [number](3) präsident of america
 
 ---
 type: intent

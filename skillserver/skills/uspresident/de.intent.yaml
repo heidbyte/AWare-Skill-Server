@@ -5,12 +5,20 @@ slots:
   - name: numbered
     entity: snips/ordinal
 
+  - name: number
+    entity: snips/number
+
 utterances:
   - wer war der [numbered](erste) präsident der usa
   - wer war der [numbered](zweite) amerikanische präsident
   - wer war der [numbered](dritte) präsident der vereinigten staaten
   - wer war der [numbered](vierte) präsident von amerika,
   - wer war der [numbered](44) präsident der usa
+  - wer war der [number](1) präsident der usa
+  - wer war der [number](zwei) amerikanische präsident
+  - wer war der [number](drei) präsident der vereinigten staaten
+  - wer war der [number](4) präsident von amerika,
+  - wer war der [number](44) präsident der usa
 
 ---
 type: intent

@@ -46,6 +46,9 @@ def beginn(data, intents):
 
 	if(intention == "presnumber"):
 		if(numbered == None):
+			numbered = getSlotbyName("number",intents)
+
+		if(numbered == None):
 			return False
 
 		for index, row in df.iterrows():
