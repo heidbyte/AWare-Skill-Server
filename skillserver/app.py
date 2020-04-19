@@ -34,6 +34,7 @@ import logging
 from glob import glob
 import argparse
 
+# define por to listen
 ap = argparse.ArgumentParser()
 ap.add_argument("-p", "--port", required=False, type=int, default = 5000, help="Number of the port")
 args = vars(ap.parse_args())
@@ -42,20 +43,20 @@ logging.basicConfig(level=logging.INFO)
 transformers_logger = logging.getLogger("transformers")
 transformers_logger.setLevel(logging.WARNING)
 
-
+# save loaded modells in ram for more speed
 snips_engines = {"firstkey": "firstkey"}
 
 transformer_engines = {"firstkey": "firstkey"}
 
 transformer_keys = {"firstkey": "firstkey"}
 
-
+# detect language using the wtl api
 def detect(text):
 	wtl = WhatTheLang()
 	return wtl.predict_lang(text)
 
 
-
+# info function for a better view
 def info(text):
 	print("\n")
 	print("*"*5)
@@ -63,7 +64,7 @@ def info(text):
 	print("*"*5)
 	print("\n")
 
-
+# translate string to other language
 def translate(text, target = "en", src = False):
 	wtl = WhatTheLang()
 	if(wtl.predict_lang(text) != target):
@@ -76,39 +77,8 @@ def translate(text, target = "en", src = False):
 	return text
 
 
-def ip2loc(ip):
-	r = requests.get(url = "https://freegeoip.app/json/" + str(ip))
-	answer = r.text
-	datas = json.loads(answer)
-	answer = datas["city"]
-	if(answer != ""):
-		return(answer)
-	elif(datas["country_name"] != ""):
-		answer = datas["country_name"]
-		return(answer)
-	else:
-		r = requests.get(url = "https://freegeoip.app/json/")
-		answer = r.text
-		datas = json.loads(answer)
-		answer = datas["city"]
-		if(answer != ""):
-			return(answer)
-		else:
-			answer = datas["country_name"]
-			return answer
 
-
-def PrintException():
-	exc_type, exc_obj, tb = sys.exc_info()
-	f = tb.tb_frame
-	lineno = tb.tb_lineno
-	filename = f.f_code.co_filename
-	linecache.checkcache(filename)
-	line = linecache.getline(filename, lineno, f.f_globals)
-	print('EXCEPTION IN ({}, LINE {} "{}"): {}'.format(filename, lineno, line.strip(), exc_obj))
-
-
-
+# define class for nlu handling
 class serverHelpers:
 	def __init__(self, data):
 		self.data = data
@@ -124,7 +94,7 @@ class serverHelpers:
 		else:
 			self.detect()
 
-
+	# info function for a better view
 	def info(self,text):
 		print("\n")
 		print("*"*5)
@@ -132,12 +102,12 @@ class serverHelpers:
 		print("*"*5)
 		print("\n")
 
-
+	# detect language using the wtl api
 	def detect(self):
 		wtl = WhatTheLang()
 		self.lang = wtl.predict_lang(self.text)
 
-
+	# translation handling
 	def translate(self,text = None, target = "de", src = False):
 		if(text == None):
 			text = self.text
@@ -155,7 +125,7 @@ class serverHelpers:
 		except:
 			self.translated = text
 
-
+	# format answer text
 	def parseAnswer(self, text):
 		text = str(text)
 		text = re.sub("[\(\[].*?[\)\]]", "", text)
@@ -164,7 +134,10 @@ class serverHelpers:
 		return text
 
 
-
+	"""
+	run fallback logic
+	if fallback has no answer too, return i am sorry
+	"""
 	def callFallback(self):
 		self.translate(target="en")
 		try:
@@ -203,22 +176,11 @@ class serverHelpers:
 
 
 		except Exception as e:
-			self.PrintException()
+			print(e)
 			return "An error occured"
 
 
-
-	def PrintException(self):
-		exc_type, exc_obj, tb = sys.exc_info()
-		f = tb.tb_frame
-		lineno = tb.tb_lineno
-		filename = f.f_code.co_filename
-		linecache.checkcache(filename)
-		line = linecache.getline(filename, lineno, f.f_globals)
-		print('EXCEPTION IN ({}, LINE {} "{}"): {}'.format(filename, lineno, line.strip(), exc_obj))
-
-
-
+	# function to use transformers for intent classification
 	def nn(self, langu, text):
 		try:
 
@@ -254,9 +216,10 @@ class serverHelpers:
 
 
 
-
+	# first nlu run for original language
 	def nlu(self):
 		global snips_engines
+		# try to load nlu for given language
 		try:
 			if(self.lang in snips_engines.keys()):
 				nlu_engine = snips_engines[self.lang]
@@ -273,6 +236,7 @@ class serverHelpers:
 					self.nlu_parsing["intent"]["probability"] = float(0.9)
 		except Exception as e:
 			print(e)
+			# use lang detect from translator, try to load nlu again
 			self.translate(src = True)
 
 			try:
@@ -292,22 +256,22 @@ class serverHelpers:
 			except Exception as e:
 				print(e)
 
+				# load german nlu, for case that langdetect failed
+				if("de" in snips_engines.keys()):
+					nlu_engine = snips_engines["de"]
+				else:
+					snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + "de")
 
-			if("de" in snips_engines.keys()):
 				nlu_engine = snips_engines["de"]
-			else:
-				snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + "de")
 
-			nlu_engine = snips_engines["de"]
+				self.nlu_parsing = nlu_engine.parse(self.translated)
 
-			self.nlu_parsing = nlu_engine.parse(self.translated)
-
-			if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
-				neural = self.nn(str(self.lang), self.translated)
-				if(neural == False and neural != None):
-					self.nlu_parsing["intent"]["probability"] = float(0)
-				elif(neural == True and neural != None):
-					self.nlu_parsing["intent"]["probability"] = float(0.9)
+				if(self.probability >= float(self.nlu_parsing["intent"]["probability"])):
+					neural = self.nn(str(self.lang), self.translated)
+					if(neural == False and neural != None):
+						self.nlu_parsing["intent"]["probability"] = float(0)
+					elif(neural == True and neural != None):
+						self.nlu_parsing["intent"]["probability"] = float(0.9)
 
 
 		self.nlu_parsing["lang"] = self.lang
@@ -325,7 +289,7 @@ class serverHelpers:
 		print(self.nlu_parsing)
 
 
-
+	# second nlu for main language
 	def nlu2(self):
 		print("Second nlu")
 		if("de" in snips_engines.keys()):
@@ -363,18 +327,20 @@ class serverHelpers:
 
 app = Flask(__name__)
 
+# route to check number of commits
+# also used to restart flask app, using debug mode, automatically after git pull command
 @app.route('/version', methods=['GET'])
 def hello():
-	return "112 commits"
+	return "114 commits"
 
 
-
+# return url for question
 @app.route('/url', methods=['GET'])
 def searxUrl():
 	url = callAPI(request.args["text"],request.args["lang"])
 	return {"url": url}
 
-
+# main route
 @app.route('/', methods=['POST', 'GET'])
 def foo():
 	"""
@@ -387,6 +353,7 @@ def foo():
 	data = None
 	nlu_engine = None
 	translated = None
+	# get all parameters, send by user
 	if request.method == 'POST':
 		try:
 			data = str(request.json).replace("'","\"")
@@ -418,15 +385,17 @@ def foo():
 
 
 
+	# fit all data into main class
 	helper = serverHelpers(data)
 
-
+	# run first nlu
 	helper.nlu()
 
 	nlu_results = json.loads(json.dumps(helper.nlu_parsing, indent=2))
 	skill = nlu_results["intent"]["intentName"]
 	probability = float(nlu_results["intent"]["probability"])
 
+	# if no skill exists or probability to low, check if google answer box exists
 	if(skill == None or probability <= helper.probability):
 		answer,answer_url = google(helper.text,json.dumps(helper.data, indent=2, ensure_ascii=False), language = helper.nlu_parsing["lang"])
 		if(answer != False and answer != "False"):
@@ -442,19 +411,20 @@ def foo():
 				helper.info("Fallback succesfull")
 				return results
 
-
+		# run second nlu if no answer box exists
 		helper.nlu2()
 
 		nlu_results = json.loads(json.dumps(helper.nlu_parsing, indent=2))
 		skill = nlu_results["intent"]["intentName"]
 		probability = float(nlu_results["intent"]["probability"])
 
+		# run fallback if no skill exists again
 		if(skill == None or probability <= helper.probability):
 
 			return helper.callFallback()
 
 
-
+	# run skills logic
 	skill = skill.split("_")
 	skill = skill[0]
 	category = skill
@@ -467,7 +437,7 @@ def foo():
 	try:
 		url = None
 		speak = mod.beginn(json.dumps(helper.data, indent=2, ensure_ascii=False), json.dumps(helper.nlu_parsing, indent=2).replace(category + "_", ""))
-
+		# check the settings, the skill returns
 		try:
 			if(len(speak) == 2 and isinstance(speak, tuple)):
 				url = speak[1]
@@ -494,6 +464,7 @@ def foo():
 
 		info(skill)
 
+		# if skill got no answer, check if google answer box exists
 		if(speak == False):
 
 			answer,answer_url = google(helper.text,json.dumps(helper.data, indent=2, ensure_ascii=False), language = helper.nlu_parsing["lang"])
@@ -522,7 +493,7 @@ def foo():
 			results = "An error occured"
 
 		else:
-
+			# format results json and translate if necessary
 			if(helper.useTranslator == True):
 				try:
 					helper.translate(text = speak,target = helper.lang)
@@ -548,7 +519,7 @@ def foo():
 		results = "An error occured"
 	return(results)
 
-
+# run server on given port
 if __name__ == "__main__":
 	app.secret_key = os.urandom(12)
 	app.run(host='0.0.0.0', port=args["port"], debug=True)
