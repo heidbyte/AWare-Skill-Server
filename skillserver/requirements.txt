@@ -10,3 +10,9 @@ pandas
 torch
 torchvision
 simpletransformers
+Wikipedia-API
+wikipedia
+caldav
+numpy
+pandas
+ics

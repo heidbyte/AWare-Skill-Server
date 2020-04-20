@@ -1,4 +1,0 @@
-caldav
-numpy
-pandas
-ics
