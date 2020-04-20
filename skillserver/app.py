@@ -50,6 +50,28 @@ transformer_engines = {"firstkey": "firstkey"}
 
 transformer_keys = {"firstkey": "firstkey"}
 
+list = glob("models/*.keys")
+for x in list:
+	try:
+		lang = x.split("/")[1]
+		lang = lang.split(".")[0]
+		myfile = open("models/" + lang + ".keys","r")
+		keys = myfile.read().split("\n")
+		myfile.close()
+		numKeys = len(keys)-1
+		transformer_keys[lang] = keys
+
+		model = MultiLabelClassificationModel('roberta',"models/" +  lang + '_transformer', num_labels=numKeys, use_cuda = False, args={'reprocess_input_data': True, 'overwrite_output_dir': True, 'num_train_epochs': 15, "train_batch_size": 16, "eval_batch_size": 16, 'no_cache': True, 'use_cached_eval_features' : False, 'save_model_every_epoch':False})
+		transformer_engines[lang] = model
+
+		snips_engines[lang] = SnipsNLUEngine.from_path("models/" + str(lang))
+
+		print("**loaded " + lang + " ***")
+
+	except Exception as e:
+		print(e)
+
+
 # detect language using the wtl api
 def detect(text):
 	wtl = WhatTheLang()
@@ -224,6 +246,7 @@ class serverHelpers:
 			if(self.lang in snips_engines.keys()):
 				nlu_engine = snips_engines[self.lang]
 			else:
+				print("*** " + self.lang + " ***")
 				snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + str(self.lang))
 
 			nlu_engine = snips_engines[self.lang]
@@ -260,6 +283,7 @@ class serverHelpers:
 				if("de" in snips_engines.keys()):
 					nlu_engine = snips_engines["de"]
 				else:
+					print("*** " + self.lang + " ***")
 					snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + "de")
 
 				nlu_engine = snips_engines["de"]
