@@ -8,7 +8,7 @@ def callAPI(question,lang = "en"):
 			datas = json.loads(url.read().decode())
 			return datas["results"][0]["url"]
 	except:
-		with urllib.request.urlopen("https://searx.decatec.de/search?q=:" + lang + "%20" + question + "&format=json") as url:
+		with urllib.request.urlopen("https://searx.be/search?q=:" + lang + "%20" + question + "&format=json") as url:
 			datas = json.loads(url.read().decode())
 			try:
 				return datas["results"][0]["url"]
