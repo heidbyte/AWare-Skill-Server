@@ -361,8 +361,11 @@ def hello():
 # return url for question
 @app.route('/url', methods=['GET'])
 def searxUrl():
-	url = callAPI(request.args["text"],request.args["lang"])
-	return {"url": url}
+	try:
+		url = callAPI(request.args["text"],request.args["lang"])
+		return str({"url": url})
+	except:
+		return str({"url": "https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"})
 
 # main route
 @app.route('/', methods=['POST', 'GET'])
