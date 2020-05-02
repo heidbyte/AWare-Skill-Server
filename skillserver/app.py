@@ -161,9 +161,10 @@ class serverHelpers:
 	if fallback has no answer too, return i am sorry
 	"""
 	def callFallback(self):
-		self.translate(target="en")
+		#self.translate(target="en")
 		try:
-			answer = fallbackHandler(self.translated,json.dumps(self.data, indent=2, ensure_ascii=False))
+			#answer = fallbackHandler(self.translated,json.dumps(self.data, indent=2, ensure_ascii=False))
+			answer = False
 			if(answer != False and answer != "False"):
 				self.nlu_parsing["skill_category"] = "fallback"
 				answer = str(answer).encode().decode()
