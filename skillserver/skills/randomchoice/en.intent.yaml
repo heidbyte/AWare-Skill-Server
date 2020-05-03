@@ -1,0 +1,58 @@
+---
+type: intent
+name: choice
+slots:
+  - name: slot0
+    entity: names
+
+  - name: slot1
+    entity: names
+
+  - name: slot2
+    entity: names
+
+  - name: slot3
+    entity: names
+
+  - name: slot4
+    entity: names
+
+  - name: slot5
+    entity: names
+
+
+utterances:
+  - . [slot0](head) or [slot1](number)
+  - . [slot0](hingehen) or [slot1](absagen) or [slot2](ignorieren) or [slot3](verschlafen) or [slot4](schlafen)
+
+
+
+---
+type: intent
+name: randomint
+slots:
+  - name: number1
+    entity: snips/number
+
+
+  - name: number2
+    entity: snips/number
+
+
+utterances:
+  - random number between [number1](ten) and [number2](20)
+
+
+---
+type: intent
+name: diceroll
+
+utterances:
+  - roll a dice
+
+---
+type: intent
+name: coinflip
+
+utterances:
+  - flip a coin

@@ -1,0 +1,71 @@
+---
+type: intent
+name: choice
+slots:
+  - name: slot0
+    entity: names
+
+  - name: slot1
+    entity: names
+
+  - name: slot2
+    entity: names
+
+  - name: slot3
+    entity: names
+
+  - name: slot4
+    entity: names
+
+  - name: slot5
+    entity: names
+
+
+utterances:
+  - . [slot0](Kopf) oder [slot1](Zahl)
+  - . [slot0](Rot) oder [slot1](Blau)
+  - . [slot0](aufstehen) oder [slot1](Liegen bleiben)
+  - . [slot0](grüne) oder [slot1](rote hose)
+  - . [slot0](hingehen) oder [slot1](absagen)
+  - . [slot0](hingehen) oder [slot1](absagen) oder [slot2](ignorieren) oder [slot3](verschlafen) oder [slot4](schlafen)
+
+
+
+---
+type: intent
+name: randomint
+slots:
+  - name: number1
+    entity: snips/number
+
+
+  - name: number2
+    entity: snips/number
+
+
+utterances:
+  - zufallszahl zwischen [number1](zehn) und [number2](20)
+  - zahl zwischen [number1](10) und [number2](zwei)
+  - zufallszahl bis [number1](zehn)
+  - sag mir eine zufällige zahl
+  - sag mir eine zufällige zahl bis [number2](fünf)
+
+
+---
+type: intent
+name: diceroll
+
+utterances:
+  - wirf einen würfel
+  - würfel werfen
+  - würfeln
+  - würfeln bitte
+
+
+---
+type: intent
+name: coinflip
+
+utterances:
+  - wirf eine münze
+  - münze werfen
