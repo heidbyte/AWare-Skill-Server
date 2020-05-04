@@ -56,3 +56,11 @@ utterances:
   - wie ist das wetter in [city](italien)
   - wie wird das wetter in [city](vlotho) [datetime](heute)
   - wärst du so höflich mir zu bitte zu sagen wie das wetter [datetime](morgen) vermutlich in [city](bielefeld) wird
+  - wie ist das wetter in [city](porta westfalica)
+  - wie wird das wetter [datetime](morgen) in [city](dresden)
+  - wie wird das wetter [datetime](morgen) in [city](vlotho)
+  - wie wird das wetter [datetime](am samstag) in [city](vlotho)
+  - wie ist das wetter in [city](magdeburg)
+  - wie ist das wetter [datetime](morgen) in [city](porta westfalica)
+  - wie ist das wetter [datetime](heute) in [city](porta westfalica)
+  - wie wird das wetter [datetime](nächste woche) in [city](löhne)

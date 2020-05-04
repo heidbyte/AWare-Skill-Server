@@ -28,6 +28,12 @@ utterances:
   - . [slot0](grüne) oder [slot1](rote hose)
   - . [slot0](hingehen) oder [slot1](absagen)
   - . [slot0](hingehen) oder [slot1](absagen) oder [slot2](ignorieren) oder [slot3](verschlafen) oder [slot4](schlafen)
+  - . [slot0](banane) oder [slot1](apfel)
+  - . [slot0](kaffee) oder [slot1](kein kaffee)
+  - . [slot0](conner) oder [slot1](florian) oder [slot2](kevin) oder [slot3](oliver)
+  - . [slot0](conner) oder [slot1](kelvin) oder [slot2](oliver) oder [slot3](florian)
+  - wer ist der beste [slot0](kevin) oder [slot1](florian) oder [slot"](conner)
+  - . [slot0](asca) oder [slot1](website)
 
 
 

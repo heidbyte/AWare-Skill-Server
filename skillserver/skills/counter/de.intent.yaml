@@ -9,6 +9,9 @@ utterances:
   - zähl hoch bis [number](10)
   - zähl bis [number](fünf)
   - bis [number](20) zählen
+  - zähle bis [number](20) Äpfel
+  - zähle bis [number](20) Äpfel hoch
+  - zähle bis [number](20) Schäfchen hoch
 
 
 ---
@@ -22,4 +25,6 @@ utterances:
   - zähle herunter von [number](10)
   - zähle von [number](fünf)
   - zähl von [number](20)
+  - zähle von [number](drei) runter
+  - zähle von [number](drei) herunter
 
