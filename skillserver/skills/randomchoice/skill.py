@@ -35,7 +35,7 @@ def beginn(data, intents):
 
 
 	if(intention == "choice"):
-		slots = []
+		slots = ["0"]
 		for xy in range(3):
 			for x in range(6):
 				slot = getSlotbyName("slot" + str(x),intents)
@@ -43,7 +43,11 @@ def beginn(data, intents):
 					slots.append(slot)
 
 		if(len(slots) > 1):
-			return random.choice(slots),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
+			choice = random.choice(slots)
+			while(choice == "0"):
+				choice = random.choice(slots)
+
+			return choice,"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
 		else:
 			return False
 
@@ -69,5 +73,5 @@ def beginn(data, intents):
 		return random.randint(1,6),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png",answer_type,False
 
 	if(intention == "coinflip"):
-		return random.choice(["kopf","zahl"]),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
+		return random.choice(["kopf","zahl","zahl","kopf"]),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
 
