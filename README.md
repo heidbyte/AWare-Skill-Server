@@ -2,7 +2,7 @@
 
 ***This software is still in development and not ready for production environment yet!***
 
-**[Checkout the official Android client](https://play.google.com/store/apps/details?id=io.aware.ava)**
+**[Checkout AVA the official Android client](https://play.google.com/store/apps/details?id=io.aware.ava)**
 
 **We are A\\Ware**\
 \
