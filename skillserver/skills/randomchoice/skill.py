@@ -36,7 +36,7 @@ def beginn(data, intents):
 
 	if(intention == "choice"):
 		slots = ["0"]
-		for xy in range(3):
+		for xy in range(1):
 			for x in range(6):
 				slot = getSlotbyName("slot" + str(x),intents)
 				if(slot != None):
