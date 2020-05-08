@@ -1,24 +1,8 @@
 #import requirements
 import json
-from fallback import wolfram_Alpha
-from app import detect, translate
 import wikipediaapi
 import wikipedia
-
-def getSlotbyName(slotname, datas):
-	try:
-		slots = datas["slots"]
-		for x in slots:
-			if x["slotName"] == slotname:
-				return x["value"]["value"]
-
-		return None
-
-			
-	except Exception as e:
-		print(e)
-		return None
-
+from utils.utils import getSlotbyName
 
 
 #beginn function, each skill needs to handle the datas

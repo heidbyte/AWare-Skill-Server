@@ -1,28 +1,13 @@
 #import requirements
 import json
-from fallback import wolfram_Alpha
-from app import detect, translate
 import urllib.request, json
 import urllib.parse
+from utils.utils import getSlotbyName
 
 lang = None
 
-def getSlotbyName(slotname, datas):
-	try:
-		slots = datas["slots"]
-		for x in slots:
-			if x["slotName"] == slotname:
-				return x["value"]["value"]
 
-		return None
-
-			
-	except Exception as e:
-		print(e)
-		return None
-
-
-
+# for this function you will need an selfhosted searx instance on the same machine
 def geturl(song):
 	song = urllib.parse.quote("!youtube " + song)
 	with urllib.request.urlopen("http://localhost:8888/?category_videos=1&q=" + song + "&pageno=1&time_range=None&format=json") as url:

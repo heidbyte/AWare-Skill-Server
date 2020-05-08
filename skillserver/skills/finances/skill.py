@@ -1,26 +1,10 @@
 #import requirements
 import json
-from fallback import wolfram_Alpha
-from app import detect, translate
+from utils.utils import getSlotbyName
 import urllib.request, json
 import urllib.parse
 
 lang = None
-
-def getSlotbyName(slotname, datas):
-	try:
-		slots = datas["slots"]
-		for x in slots:
-			if x["slotName"] == slotname:
-				return x["value"]["value"]
-
-		return None
-
-
-	except Exception as e:
-		print(e)
-		return None
-
 
 
 #beginn function, each skill needs to handle the datas

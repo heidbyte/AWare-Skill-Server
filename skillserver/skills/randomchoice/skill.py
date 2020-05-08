@@ -1,35 +1,17 @@
 #import requirements
 import json
 import random
-
-
-lang = None
-
-def getSlotbyName(slotname, datas, datakey = "value"):
-	try:
-		slots = datas["slots"]
-		for x in slots:
-			if x["slotName"] == slotname:
-				return x["value"][datakey]
-
-		return None
-
-			
-	except Exception as e:
-		print(e)
-		return None
+from utils.utils import getSlotbyName
 
 
 
 #beginn function, each skill needs to handle the datas
 def beginn(data, intents):
-	global lang
 	#load users data into json
 	datas = json.loads(data)
 	#load nlu data into json
 	intents = json.loads(intents)
 	question = intents["input"]
-	lang = intents["lang"]
 	intention = intents["intent"]["intentName"]
 	answer_type = "answer"
 

@@ -1,25 +1,8 @@
 #import requirements
 import json
-from app import detect, translate
-import urllib.request, json
-import urllib.parse
+from utils.utils import getSlotbyName
 
 lang = None
-
-def getSlotbyName(slotname, datas):
-	try:
-		slots = datas["slots"]
-		for x in slots:
-			if x["slotName"] == slotname:
-				return x["value"]["value"]
-
-		return None
-
-			
-	except Exception as e:
-		print(e)
-		return None
-
 
 
 #beginn function, each skill needs to handle the datas

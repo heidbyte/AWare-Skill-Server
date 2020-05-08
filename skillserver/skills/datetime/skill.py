@@ -1,6 +1,5 @@
 from datetime import date, datetime
 import json
-from app import detect, translate
 
 lang = None
 

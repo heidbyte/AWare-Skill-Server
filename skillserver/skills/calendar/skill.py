@@ -5,6 +5,7 @@ import json
 from ics import Calendar
 from datetime import timedelta
 from app import detect, translate
+from utils.utils import getSlotbyName
 
 lang = None
 
@@ -145,34 +146,17 @@ def beginn(data, intents):
 	intention = intents["intent"]["intentName"]
 	if(intention == "getevents"):
 		try:
-			begin = intents["slots"][0]["value"]["value"]
+			begin = getSlotbyName("datetime",intents)
 		except Exception as e:
 			print(e)
 
 
 		return str(getCalDavEvents(url = url, username = username, password = password, begin = begin)),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
 	else:
-		try:
-			if(intents["slots"][0]["slotName"] == "datetime"):
-				begin = intents["slots"][0]["value"]["value"]
-			else:
-				event = intents["slots"][0]["value"]["value"]
 
+		begin = getSlotbyName("datetime",intents)
+		event = getSlotbyName("hobbys",intents)
 
-				
-		except Exception as e:
-			print(e)
-
-		try:
-			if(intents["slots"][1]["slotName"] == "datetime"):
-				begin = intents["slots"][1]["value"]["value"]
-			else:
-				event = intents["slots"][1]["value"]["value"]
-
-
-				
-		except Exception as e:
-			print(e)
 
 		if(begin == None):
 			return (False)
