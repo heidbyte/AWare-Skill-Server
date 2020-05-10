@@ -17,3 +17,4 @@ caldav
 numpy
 pandas
 ics
+mosestokenizer
