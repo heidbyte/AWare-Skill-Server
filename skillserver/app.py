@@ -79,6 +79,28 @@ for x in list:
 		print(e)
 
 
+
+translationList = ["en","it","es","da","fi","pl","cs","ca","crs","fr"]
+for lgc in translationList:
+	# from de to language
+	mname = 'Helsinki-NLP/opus-mt-de-' + lgc
+	model = MarianMTModel.from_pretrained(mname)
+	tok = MarianSentencePieceTokenizer.from_pretrained(mname)
+
+	translation_engines[mname] = model
+	translation_tokenizers[mname] = tok
+
+	# form language to de
+	mname = 'Helsinki-NLP/opus-mt-' + lgc + "-de"
+	model = MarianMTModel.from_pretrained(mname)
+	tok = MarianSentencePieceTokenizer.from_pretrained(mname)
+
+	translation_engines[mname] = model
+	translation_tokenizers[mname] = tok
+
+	print("**loaded translator: " + lgc + " ***")
+
+
 # detect language using the wtl api
 def detect(text):
 	wtl = WhatTheLang()
