@@ -454,7 +454,7 @@ app = Flask(__name__)
 # also used to restart flask app, using debug mode, automatically after git pull command
 @app.route('/version', methods=['GET'])
 def hello():
-	return "131 commits"
+	return "145 commits"
 
 
 # return url for question
