@@ -33,6 +33,9 @@ import pandas as pd
 import logging
 from glob import glob
 import argparse
+from transformers import MarianSentencePieceTokenizer, MarianMTModel
+from typing import List
+
 
 # define por to listen
 ap = argparse.ArgumentParser()
@@ -49,6 +52,10 @@ snips_engines = {"firstkey": "firstkey"}
 transformer_engines = {"firstkey": "firstkey"}
 
 transformer_keys = {"firstkey": "firstkey"}
+
+translation_engines = {"firstkey": "firstkey"}
+
+translation_tokenizers = {"firstkey": "firstkey"}
 
 list = glob("models/*.keys")
 for x in list:
@@ -88,14 +95,45 @@ def info(text):
 
 # translate string to other language
 def translate(text, target = "en", src = False):
+	global translation_engines
+	global translation_tokenizers
 	wtl = WhatTheLang()
-	if(wtl.predict_lang(text) != target):
-		info("translating...")
-		translator = Translator()
-		translated = translator.translate(text, dest = target)
-		text = translated.text
-		if(src):
-			return text,translated.src
+	translated = None
+	langcode = wtl.predict_lang(text)
+	if(langcode != target):
+		try:
+			mname = f'Helsinki-NLP/opus-mt-{langcode}-{target}'   # model name
+			model = None
+			tok = None
+
+			if(mname in translation_engines.keys()):
+				model = translation_engines[mname]
+				tok = translation_tokenizers[mname]
+			else:
+				model = MarianMTModel.from_pretrained(mname)
+				tok = MarianSentencePieceTokenizer.from_pretrained(mname)
+
+				translation_engines[mname] = model
+				translation_tokenizers[mname] = tok
+
+
+			batch = tok.prepare_translation_batch(src_texts=[text])  # don't need tgt_text for inference
+			gen = model.generate(**batch)  # for forward pass: model(**batch)
+			words: List[str] = tok.decode_batch(gen, skip_special_tokens=True)
+			text = words[0]
+
+			if(src):
+				return text,langcode
+			
+
+
+		except:
+			info("translating...")
+			translator = Translator()
+			translated = translator.translate(text, dest = target)
+			text = translated.text
+			if(src):
+				return text,translated.src
 	return text
 
 
@@ -131,17 +169,52 @@ class serverHelpers:
 
 	# translation handling
 	def translate(self,text = None, target = "de", src = False):
+		global translation_engines
+		global translation_tokenizers
 		if(text == None):
 			text = self.text
 		wtl = WhatTheLang()
 		try:
-			if(wtl.predict_lang(text) != target):
-				self.info("translating...")
-				translator = Translator()
-				translated = translator.translate(text, dest = target)
-				self.translated = translated.text
-				if(src):
-					self.lang = translated.src
+			langcode = wtl.predict_lang(text)
+			if(langcode != target):
+				try:
+					mname = f'Helsinki-NLP/opus-mt-{langcode}-{target}'   # model name
+					model = None
+					tok = None
+
+					if(mname in translation_engines.keys()):
+						model = translation_engines[mname]
+						tok = translation_tokenizers[mname]
+					else:
+						model = MarianMTModel.from_pretrained(mname)
+						tok = MarianSentencePieceTokenizer.from_pretrained(mname)
+
+						translation_engines[mname] = model
+						translation_tokenizers[mname] = tok
+
+
+					batch = tok.prepare_translation_batch(src_texts=[text])  # don't need tgt_text for inference
+					gen = model.generate(**batch)  # for forward pass: model(**batch)
+					words: List[str] = tok.decode_batch(gen, skip_special_tokens=True)
+					self.translated = words[0]
+
+					if(src):
+						self.lang = langcode
+
+					self.info("translated local...")
+
+
+
+
+				except Exception as e:
+					print(e)					
+					self.info("translating...")
+					translator = Translator()
+					translated = translator.translate(text, dest = target)
+					self.translated = translated.text
+					if(src):
+						self.lang = translated.src
+
 			else:
 				self.translated = text
 		except:
@@ -205,6 +278,8 @@ class serverHelpers:
 
 	# function to use transformers for intent classification
 	def nn(self, langu, text):
+		global transformer_keys
+		global transformer_engines
 		try:
 
 			if(langu in transformer_keys.keys()):
@@ -316,6 +391,7 @@ class serverHelpers:
 
 	# second nlu for main language
 	def nlu2(self):
+		global snips_engines
 		print("Second nlu")
 		if("de" in snips_engines.keys()):
 			nlu_engine = snips_engines["de"]
