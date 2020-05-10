@@ -9,6 +9,7 @@ wolframalpha
 pandas
 torch
 torchvision
+transformers==2.9.0
 simpletransformers
 Wikipedia-API
 wikipedia
