@@ -6,6 +6,20 @@ from utils.utils import getSlotbyName
 
 lang = None
 
+def generate_answer(weather,temp,location2):
+	global lang
+	weather = str(weather)
+	temp = str(int(temp))
+	answer = None
+	if(lang == "de"):
+		answer = weather + " mit etwa " + temp + " Grad in " + location2
+
+
+	if(answer == None):
+		answer = weather + " with circa " + temp + " degrees in " + location2
+
+	return answer
+
 
 #beginn function, each skill needs to handle the datas
 def beginn(data, intents):
