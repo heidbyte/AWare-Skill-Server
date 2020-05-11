@@ -10,12 +10,11 @@ def generate_answer(h,m,date):
 	date = str(date)
 	answer = None
 	if(lang == "de"):
-		answer = "Es ist " + h + " Uhr " + m
+		answer = "Es ist " + h + ":"  + m + " Uhr"
 
 
 	if(answer == None):
-		answer = "It is " + h + " o'clock " + m
-
+		answer = "It is " + h + ":"  + m + " o'clock"
 	return answer
 
 
