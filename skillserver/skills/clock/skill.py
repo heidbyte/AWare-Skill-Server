@@ -8,6 +8,7 @@ lang = None
 def generate_answer(intent):
 	global lang
 	answer = None
+	# generate specific answer for language
 	if(lang == "de"):
 		if(intent == "alarm"):
 			answer = "Wecker wird gesetzt"
@@ -39,6 +40,7 @@ def beginn(data, intents):
 
 
 	if(intention == "alarm"):
+		# extract datetime
 		time = getSlotbyName("time",intents)
 		if(time == None):
 			return "Ich habe die Zeit leider nicht verstanden","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
@@ -51,6 +53,7 @@ def beginn(data, intents):
 		intents["seconds"] = time[2]
 
 	else:
+		# extract hours, minutes and seconds individually
 		hours = getSlotbyName("time",intents, "hours")
 		minutes = getSlotbyName("time",intents, "minutes")
 		seconds = getSlotbyName("time",intents, "seconds")
@@ -73,4 +76,5 @@ def beginn(data, intents):
 			intents["seconds"] = seconds
 
 
+	# return answer, url, answer type, set translator to true and change intents to adapted json
 	return generate_answer(intention),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png",answer_type,True,intents

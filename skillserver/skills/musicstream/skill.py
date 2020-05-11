@@ -9,6 +9,7 @@ lang = None
 
 # for this function you will need an selfhosted searx instance on the same machine
 def geturl(song):
+	# search song url for youtube using searx engine
 	song = urllib.parse.quote("!youtube " + song)
 	with urllib.request.urlopen("http://localhost:8888/?category_videos=1&q=" + song + "&pageno=1&time_range=None&format=json") as url:
 		datas = json.loads(url.read().decode())
@@ -22,6 +23,7 @@ def geturl(song):
 def generate_answer():
 	global lang
 	answer = None
+	# generate language specific answer
 	if(lang == "de"):
 		answer = "Hier ist die Musik"
 
@@ -38,11 +40,11 @@ def beginn(data, intents):
 	datas = json.loads(data)
 	#load nlu data into json
 	intents = json.loads(intents)
-	question = intents["input"]
 	lang = intents["lang"]
 	
 	song = ""
 
+	# extract artis and music track
 	artist = getSlotbyName("artist",intents)
 	track = getSlotbyName("track",intents)
 
@@ -52,11 +54,13 @@ def beginn(data, intents):
 	if(track):
 		song += track
 
+	# if either artist nor music track got found return False
 	if(artist == None and track == None):
 		return False
 
 	song = geturl(song)
 
+	# if only artist is given return False to ask fallback
 	if(song == None):
 		return False
 

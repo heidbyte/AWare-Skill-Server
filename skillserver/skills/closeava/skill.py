@@ -7,6 +7,7 @@ lang = None
 def generate_answer(intent):
 	global lang
 	answer = None
+	# generate language specific answer
 	if(lang == "de"):
 		if(intent == "thanks"):
 			answer = "Gern geschehen"

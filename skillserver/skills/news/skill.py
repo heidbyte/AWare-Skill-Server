@@ -21,7 +21,7 @@ def beginn(data, intents):
 	thema = getSlotbyName("thema",intents)
 
 
-
+	# return all actuall news
 	if(intention == "allnews"):
 		with urllib.request.urlopen("https://newsapi.org/v2/top-headlines?country=" + str(lang) + "&apiKey=" + apiKey) as url:
 			datas = json.loads(url.read().decode())
@@ -29,16 +29,18 @@ def beginn(data, intents):
 			answer = ""
 			limit = 0
 			for x in articles:
+				# only return five articles
 				if(limit < 5):
 					answer += x["description"] + "\n\n"
 					limit = limit + 1
 
+			# if articles got added successful, return those
 			if(answer != ""):
 				return answer
 			else:
 				return False
 
-	
+	# return news for specific topic
 	elif(thema != None):
 		with urllib.request.urlopen("https://newsapi.org/v2/everything?q=" + str(thema) + "&language=" + str(lang) + "&apiKey=" + apiKey) as url:
 			datas = json.loads(url.read().decode())
@@ -46,10 +48,12 @@ def beginn(data, intents):
 			answer = ""
 			limit = 0
 			for x in articles:
+				# only return five articles
 				if(limit < 5):
 					answer += x["description"] + "\n\n"
 					limit = limit + 1
 
+			# if articles got added successful, return those
 			if(answer != ""):
 				return answer
 			else:

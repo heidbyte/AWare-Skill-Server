@@ -8,6 +8,7 @@ lang = None
 def generate_answer(appnames):
 	global lang
 	answer = None
+	# generate language specific answer
 	if(lang == "de"):
 		answer = "Ich versuche " + appnames + " anzurufen"
 
@@ -24,13 +25,12 @@ def beginn(data, intents):
 	datas = json.loads(data)
 	#load nlu data into json
 	intents = json.loads(intents)
-	question = intents["input"]
 	lang = intents["lang"]
-	
-	song = ""
 
+	# extract name to call
 	appnames = getSlotbyName("name",intents)
 
+	# return False if no name to call was found
 	if(appnames == None):
 		return False
 

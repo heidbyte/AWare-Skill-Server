@@ -27,6 +27,8 @@ def beginn(data, intents):
 
 
 
+	# extract time and location
+	# TODO: replace with new global function from utils
 	try:
 		for x in slots:
 			if x["slotName"] == "city":
@@ -42,6 +44,7 @@ def beginn(data, intents):
 		# return false, so the server can try to use fallback skills to generate an answer
 		return False
 
+	# try to extract location and ask user if not given
 	if(location == None):
 		try:
 			location = data["get_location"]
@@ -57,6 +60,7 @@ def beginn(data, intents):
 
 	try:	
 
+		# return actual weather
 		if(time == None):
 			with urllib.request.urlopen("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + apikey + "&units=metric&lang=" + lang) as url:
 				datas = json.loads(url.read().decode())
@@ -66,13 +70,14 @@ def beginn(data, intents):
 
 			return answer,None,answer_type
 
-
+		# return weather for specific time
 		else:
 			with urllib.request.urlopen("https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&appid=" + apikey + "&units=metric&lang=" + lang) as url:
 				datas = json.loads(url.read().decode())
 
 
 			for x in datas["list"]:
+				# get weather at 15 o clock
 				if(x["dt_txt"].split(" ")[0] == time and x["dt_txt"].split(" ")[1] == "15:00:00"):
 					answer = generate_answer(x["weather"][0]["description"],str(int(x["main"]["temp_min"])),location2)
 					return answer,None,answer_type

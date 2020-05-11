@@ -2,8 +2,6 @@
 import json
 from utils.utils import getSlotbyName
 
-lang = None
-
 
 #beginn function, each skill needs to handle the datas
 def beginn(data, intents):
@@ -12,12 +10,12 @@ def beginn(data, intents):
 	datas = json.loads(data)
 	#load nlu data into json
 	intents = json.loads(intents)
-	question = intents["input"]
 	lang = intents["lang"]
 	intention = intents["intent"]["intentName"]
 	target = getSlotbyName("target",intents)
 	answer_type = "answer"
 
+	# try to get target address
 	if(target == None):
 		try:
 			target = datas["get_adress"]
@@ -29,8 +27,10 @@ def beginn(data, intents):
 
 
 	if(intention == "search"):
+		# ask user whats the target he meaned
 		if(target == None):
 			return "Welchen Ort meinen sie ?","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","get_adress",True,intents
 
 
+	# return extracted data without statement
 	return "    ","https://a-ware.io/wp-content/uploads/2020/02/LOGO.png",answer_type,False,intents

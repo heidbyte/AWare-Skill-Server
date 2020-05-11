@@ -15,7 +15,6 @@ def beginn(data, intents):
 	datas = json.loads(data)
 	#load nlu data into json
 	intents = json.loads(intents)
-	question = intents["input"]
 	lang = intents["lang"]
 	intention = intents["intent"]["intentName"]
 	numbered = getSlotbyName("numbered",intents)
@@ -23,6 +22,7 @@ def beginn(data, intents):
 	answer_type = "answer"
 	answer = ""
 
+	# download and read data of american presidents
 	col_list = ["Number", "Name","Time"]
 	url = "https://raw.githubusercontent.com/flozi00/AWare-Skill-Server/master/skillserver/data/uspresidents.csv"
 	s = requests.get(url).content

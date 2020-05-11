@@ -26,7 +26,8 @@ def beginn(data, intents):
 		for x in range(number):
 			answer += str(x+1) + "\n"
 
-		return(answer),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
+		#disable translator
+		return(answer),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","answer",False
 
 	#intention is not to count up, so count down
 	else:
@@ -34,7 +35,8 @@ def beginn(data, intents):
 		for x in range(number):
 			answer += str(number - (x+1)) + "\n"
 
-		return(answer),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"
+		# disable translator
+		return(answer),"https://a-ware.io/wp-content/uploads/2020/02/LOGO.png","answer",False
 
 	#at least one return (no in, if or try) statement has to be not indented
 	#this statement is not executed. Necessary for python interpreter tho.

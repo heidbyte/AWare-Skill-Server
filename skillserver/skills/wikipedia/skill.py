@@ -18,16 +18,19 @@ def beginn(data, intents):
 		return False
 	lang = intents["lang"]
 	
+	# set lang for wikipedia
 	wiki_wiki = wikipediaapi.Wikipedia(lang)
 	wikipedia.set_lang(lang)
 	
 	page_py = wiki_wiki.page(name)
 
+	# try to generate answer from wikipedia
 	try:
 		return wikipedia.summary(name, sentences=4).split("\n\n")[0]
 	except:
 		pass
 
+	# use seconds wikipedia library if first one is not working
 	if(page_py.exists()):
 		sentences = page_py.summary[0:-1].split(". ")
 		answer = ""
@@ -38,13 +41,14 @@ def beginn(data, intents):
 				pass
 		return(answer.split("\n\n")[0])
 
+	# try to search on english wikipedia for an answer
 	try:
 		wikipedia.set_lang("en")
 		return wikipedia.summary(name, sentences=4).split("\n\n")[0]
 	except:
 		pass
 
-
+	# use seconds wikipedia library if first one is not working
 	if(page_py.exists()):
 		wiki_wiki = wikipediaapi.Wikipedia('en')
 		page_py = wiki_wiki.page(name)
