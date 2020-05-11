@@ -475,7 +475,13 @@ def detectlangapi():
 
 @app.route('/translations', methods=['GET'])
 def translateapi():
-	translated, src = translate(request.args["text"], target = request.args["target"], src = True)
+	ttt = request.args["text"]
+	ttt = ttt.split("\n")
+	translated = ""
+	src = None
+	for x in ttt:
+		translates, src = translate(ttt, target = request.args["target"], src = True)
+		translated += translates + "\n"
 	return str({"text": translated, "source": src})
 
 
