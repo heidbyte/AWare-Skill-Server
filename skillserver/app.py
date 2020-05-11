@@ -170,6 +170,7 @@ class serverHelpers:
 		self.probability = 0.6
 		self.answer_type = "answer"
 		self.useTranslator = True
+		self.mainlang = "de"
 
 		if("lang" in data):
 			self.lang = data["lang"]
@@ -190,7 +191,7 @@ class serverHelpers:
 		self.lang = wtl.predict_lang(self.text)
 
 	# translation handling
-	def translate(self,text = None, target = "de", src = False):
+	def translate(self,text = None, target = self.mainlang, src = False):
 		global translation_engines
 		global translation_tokenizers
 		if(text == None):
@@ -377,14 +378,14 @@ class serverHelpers:
 			except Exception as e:
 				print(e)
 
-				# load german nlu, for case that langdetect failed
-				if("de" in snips_engines.keys()):
-					nlu_engine = snips_engines["de"]
+				# load default nlu, for case that langdetect failed
+				if(self.mainlang in snips_engines.keys()):
+					nlu_engine = snips_engines[self.mainlang]
 				else:
 					print("*** " + self.lang + " ***")
-					snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + "de")
+					snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + self.mainlang)
 
-				nlu_engine = snips_engines["de"]
+				nlu_engine = snips_engines[self.mainlang]
 
 				self.nlu_parsing = nlu_engine.parse(self.translated)
 
@@ -415,12 +416,12 @@ class serverHelpers:
 	def nlu2(self):
 		global snips_engines
 		print("Second nlu")
-		if("de" in snips_engines.keys()):
-			nlu_engine = snips_engines["de"]
+		if(self.mainlang in snips_engines.keys()):
+			nlu_engine = snips_engines[self.mainlang]
 		else:
-			snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + "de")
+			snips_engines[self.lang] = SnipsNLUEngine.from_path("models/" + self.mainlang)
 
-		nlu_engine = snips_engines["de"]
+		nlu_engine = snips_engines[self.mainlang]
 		self.translate()
 		self.nlu_parsing = nlu_engine.parse(self.translated)
 		self.nlu_parsing["lang"] = self.lang
