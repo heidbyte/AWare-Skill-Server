@@ -2,14 +2,11 @@
 import json
 import random
 
-lang = None
-
 
 def generate_answer(intent, url):
-	global lang
 	answer = None
 	jokesList = []	
-	
+	# return random joke from json file
 	with open(url, 'r') as json_file:
 		reader = json.load(json_file)
 		for row in reader:
@@ -21,15 +18,16 @@ def generate_answer(intent, url):
 
 #beginn function, each skill needs to handle the datas
 def beginn(data, intents):
-	global lang
 	#load users data into json
 	datas = json.loads(data)
 	#load nlu data into json
 	intents = json.loads(intents)
 	intention = intents["intent"]["intentName"]
 	lang = intents["lang"]
+	# base path to jokes
 	url = "skills//joke//jokes//"	
 	
+	# append language specific path
 	if(lang == "de"):
 		url += "de//"
 		if(intention == "jokes_blonde"):

@@ -7,6 +7,7 @@ lang = None
 def generate_answer(intent):
 	global lang
 	answer = None
+	# generate language specific answer, decide by intention which answer to return
 	if(lang == "de"):
 		if(intent == "parents"):
 			answer = "Ich wurde von dem Aware Team erschaffen"

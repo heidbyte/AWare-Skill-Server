@@ -10,6 +10,7 @@ lang = None
 def generate_answer():
 	global lang
 	answer = None
+	# generate language specific answer
 	if(lang == "de"):
 		answer = "Hier sind Bilder "
 
@@ -28,12 +29,12 @@ def beginn(data, intents):
 	intents = json.loads(intents)
 	question = intents["input"]
 	lang = intents["lang"]
-	
-	song = ""
 
+	# extract object to search images for
 	things = getSlotbyName("things",intents)
 
 	if(things == None):
 		return generate_answer()
 
-	return generate_answer(),"https://searx.info/?q=" + urllib.parse.quote(things) + "&categories=images"
+	# return link to qwant images
+	return generate_answer(),"https://www.qwant.com/?q=" + urllib.parse.quote(things) + "&t=images"
