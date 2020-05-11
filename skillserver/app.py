@@ -466,6 +466,21 @@ def searxUrl():
 	except:
 		return str({"url": "https://a-ware.io/wp-content/uploads/2020/02/LOGO.png"})
 
+
+
+@app.route('/langdetect', methods=['GET'])
+def detectlangapi():
+	return detect(request.args["text"])
+
+
+@app.route('/translations', methods=['GET'])
+def translateapi():
+	translated, src = translate(request.args["text"], target = request.args["target"], src = True)
+	return str({"text": translated, "source": src})
+
+
+
+
 # main route
 @app.route('/', methods=['POST', 'GET'])
 def foo():
