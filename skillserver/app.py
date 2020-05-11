@@ -470,7 +470,7 @@ def searxUrl():
 
 @app.route('/langdetect', methods=['GET'])
 def detectlangapi():
-	return str({"text": detect(request.args["text"]))
+	return str({"text": detect(request.args["text"])})
 
 
 @app.route('/translations', methods=['GET'])
