@@ -470,7 +470,7 @@ def searxUrl():
 
 @app.route('/langdetect', methods=['GET'])
 def detectlangapi():
-	return str(json.dumps(str({"text": detect(request.args["text"])}), indent=2, ensure_ascii=False))
+	return json.dumps({"text": detect(request.args["text"])}, indent=2, ensure_ascii=False)
 
 
 @app.route('/translations', methods=['GET'])
@@ -482,7 +482,7 @@ def translateapi():
 	for x in ttt:
 		translates, src = translate(ttt, target = request.args["target"], src = True)
 		translated += translates + "\n"
-	return str(json.dumps(str({"text": translated, "source": src})))
+	return json.dumps({"text": translated, "source": src}, indent=2, ensure_ascii=False)
 
 
 
