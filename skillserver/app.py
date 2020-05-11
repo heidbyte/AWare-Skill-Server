@@ -80,7 +80,7 @@ for x in list:
 
 
 
-translationList = ["en","it","es","da","fi","pl","cs","ca","crs","fr"]
+translationList = ["en","it","es","da","fr"]
 for lgc in translationList:
 	# from de to language
 	mname = 'Helsinki-NLP/opus-mt-de-' + lgc
