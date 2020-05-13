@@ -11,3 +11,9 @@ slots:
 utterances:
   - übersetze [sentence](wie ist das wetter) nach [langucode](deutsch)
   - übersetze [sentence](wie ist das wetter in hamburg) in [langucode](englisch)
+  - starte den Übersetzer von Deutsch nach [langucode](englisch)
+  - übersetze von Deutsch nach [langucode](englisch)
+  - übersetze nach [langucode](englisch)
+  - was bedeutet [sentence](wie spät ist es iegentlich gerade) in [langucode](englisch)
+  - wie heißt [sentence](Restaurant) in [langucode](englisch)
+  - Deutsch nach [langucode](englisch) übersetzen
