@@ -1,20 +1,11 @@
 #import requirements
-import urllib.request, json
-from datetime import datetime
-import urllib.parse
+import json
 from utils.utils import getSlotbyName
 from app import translate
-
-lang = None
 
 
 #beginn function, each skill needs to handle the datas
 def beginn(data, intents):
-	global lang
-	location = None
-	time = None
-	datas = None
-	answer = ""
 	#load users data into json
 	data = json.loads(data)
 	#load nlu data into json
@@ -22,11 +13,7 @@ def beginn(data, intents):
 	answer_type = "answer"
 	
 	langucode = getSlotbyName("langucode", intents)
-	if(langucode != None):
-		langucode = str(langucode)
 	sentence = getSlotbyName("sentence", intents)
-	if(sentence != None):
-		sentence = str(sentence)
 
 	if(sentence == None):
 		try:
