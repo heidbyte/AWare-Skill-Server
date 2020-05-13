@@ -1,0 +1,13 @@
+---
+type: intent
+name: getweather
+slots:
+  - name: langucode
+    entity: langcodes
+
+  - name: sentence
+    entity: names
+
+utterances:
+  - translate [sentence](wie ist das wetter) to [langucode](deutsch)
+  - translate [sentence](wie ist das wetter) in [langucode](englisch)
